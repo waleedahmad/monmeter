@@ -1,0 +1,59 @@
+.login{
+    .form{
+        overflow:hidden;
+        height: 400px;
+        width : 700px;
+        position:absolute;
+        left: 100px;
+        bottom: 250px;
+
+        .left,.right{
+            padding-top: 150px;
+            display: inline-block;
+            width : 50%;
+            height : 100%;
+            float:left;
+        }
+
+        .left{
+            #login-icon{
+                width : 320px;
+                height: 90px;
+            }
+        }
+
+        .right{
+
+            .email,.password{
+                background : rgba(255, 255, 255, 1);
+                width : 100%;
+                height: 25px;
+                border: 0px;
+                margin-bottom: 5px;
+                padding : 10px;
+                font-size: 16px;
+            }
+
+            .login{
+                cursor: pointer;
+                margin-top: 30px;
+                border : 2px solid rgba(255, 255, 255, 1);
+                border-radius : 4px;
+                -moz-border-radius : 4px;
+                -webkit-border-radius : 4px;
+                width: 100%;
+                height: 45px;
+                font-family : Proxima Nova;
+                font-size : 23px;
+                line-height : 23.71px;
+                background-color:transparent;
+                color:white;
+
+                &:hover{
+                    background : rgba(210, 48, 79, 1);
+                    border-color: rgba(210, 48, 79, 1);
+                }
+            }
+        }
+    }
+}

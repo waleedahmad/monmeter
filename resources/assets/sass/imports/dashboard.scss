@@ -1,0 +1,32 @@
+@import "sidebar";
+
+
+.sidebar, .user-control,.dashboard{
+    display: inline-block;
+}
+
+.user-control,.dashboard{
+    width: 950px;
+    height: 100%;
+    float:right;
+
+    .header{
+        margin-top: 40px;
+        #dashboard-header,
+        #user-control-header{
+            width: 250px;
+            height: 60px;
+        }
+    }
+
+    .content{
+        margin-top: 50px;
+        width: 100%;
+
+        @import "tabs";
+        @import "dash_main";
+
+    }
+
+
+}
