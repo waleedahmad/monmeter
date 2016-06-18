@@ -53,6 +53,10 @@
                     </p>
                 </div>
 
+                <div class="chart">
+                    <div id="chart_div" style="width: 900px; height: 500px;"> </div>
+                </div>
+
             </div>
             <div id="tab-2" class="tab-content last-reading">
                 <div class="tab-header log-history">
