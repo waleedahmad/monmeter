@@ -8,7 +8,7 @@
         height: 150px;
     }
 
-    .logo, .dashboard, .users{
+    .logo, .dashboard, .users,.super-users{
         width : 100%;
         height: 150px;
         background : #383838;
@@ -26,6 +26,17 @@
             filter: alpha(opacity=70) progid:DXImageTransform.Microsoft.Alpha(opacity=70) ;
         }
     }
+
+    .super-users{
+        cursor: pointer;
+        &:hover, &.active{
+            background : rgba(193, 53, 78, 1);
+            opacity : 0.6;
+            filter: alpha(opacity=60) progid:DXImageTransform.Microsoft.Alpha(opacity=60) ;
+        }
+    }
+
+
 
     .logo{
         #dashboard-icon{
@@ -45,6 +56,14 @@
 
     .users{
         #user-list-icon{
+            height: 40px;
+            width: 80%;
+            margin : 55px 20px;
+        }
+    }
+
+    .super-users{
+        #super-user-icon{
             height: 40px;
             width: 80%;
             margin : 55px 20px;

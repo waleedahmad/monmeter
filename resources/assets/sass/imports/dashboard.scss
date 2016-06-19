@@ -1,11 +1,14 @@
 @import "sidebar";
 
 
-.sidebar, .user-control,.dashboard{
+.sidebar,
+.user-control,
+.dashboard,
+.super-user-control{
     display: inline-block;
 }
 
-.user-control,.dashboard{
+.user-control,.dashboard,.super-user-control{
     width: 950px;
     height: 100%;
     float:right;
@@ -13,7 +16,8 @@
     .header{
         margin-top: 40px;
         #dashboard-header,
-        #user-control-header{
+        #user-control-header,
+        #super-user-header{
             width: 250px;
             height: 60px;
         }
@@ -25,7 +29,6 @@
 
         @import "tabs";
         @import "dash_main";
-
     }
 
 

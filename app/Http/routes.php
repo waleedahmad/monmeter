@@ -12,3 +12,7 @@ Route::get('/dashboard/main', function () {
 Route::get('/dashboard/user-control', function () {
     return view('dashboard.user_control');
 });
+
+Route::get('/dashboard/manage/users', function () {
+    return view('dashboard.super_users');
+});
