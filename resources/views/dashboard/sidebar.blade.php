@@ -1,19 +1,19 @@
 <div class="sidebar">
     <div class="logo">
-        @include('svg.dashboard_icon')
+        @include('svg.sidebar.dashboard_icon')
     </div>
 
 
     @if($_SERVER['REQUEST_URI'] === '/dashboard/main' || $_SERVER['REQUEST_URI'] === '/dashboard/user-control')
         <a href="/dashboard/main">
             <div class="dashboard @if($_SERVER['REQUEST_URI'] === '/dashboard/main') {{'active'}} @endif">
-                @include('svg.sub_dashboard_icon')
+                @include('svg.sidebar.sub_dashboard_icon')
             </div>
         </a>
 
         <a href="/dashboard/user-control">
             <div class="users @if($_SERVER['REQUEST_URI'] === '/dashboard/user-control') {{'active'}} @endif">
-                @include('svg.user_list_icon')
+                @include('svg.sidebar.user_list_icon')
             </div>
         </a>
 
@@ -33,10 +33,10 @@
                 <li>
                     <ul>
                         <li>
-                            -  did not dispense fuel
+                            - did not dispense fuel
                         </li>
                         <li>
-                            -  was timed out by the systems
+                            - was timed out by the systems
                         </li>
                     </ul>
                 </li>
@@ -44,15 +44,11 @@
         </div>
     @endif
 
-    @if($_SERVER['REQUEST_URI'] === '/dashboard/manage/users')
+    @if($_SERVER['REQUEST_URI'] === '/dashboard/manage/users' || $_SERVER['REQUEST_URI'] === '/dashboard/manage/super-users')
         <a href="/dashboard/manage/users">
-            <div class="super-users @if($_SERVER['REQUEST_URI'] === '/dashboard/manage/users') {{'active'}} @endif">
-                @include('svg.super_user_icon')
+            <div class="super-users @if($_SERVER['REQUEST_URI'] === '/dashboard/manage/users' || $_SERVER['REQUEST_URI'] === '/dashboard/manage/super-users') {{'active'}} @endif">
+                @include('svg.sidebar.super_user_icon')
             </div>
         </a>
     @endif
-
-
-
-
 </div>

@@ -1,4 +1,4 @@
-.location-list{
+.location-list,.user-list{
     .data{
         margin-left: 20px;
         margin-top: 20px;
@@ -52,7 +52,7 @@
     }
 }
 
-.add-location{
+.add-location, .add-user{
     .location-form{
         margin-left: 20px;
         width : 850px;
@@ -77,17 +77,89 @@
                         margin-left : 5px;
                     }
 
-                    input,#invalid-input-tooltip{
+                    input[type="text"],#invalid-input-tooltip{
                         display:inline-block;
                         float:left;
                     }
-                    input{
+                    input[type="text"]{
                         padding: 5px;
                         width : 330px;
                         height: 25px;
                         background-color:transparent;
                         border : 2px solid  #beb5b5;
                         color:grey;
+                    }
+
+                }
+
+                .left{
+                    width : 250px;
+                }
+
+                .right{
+                    width : 600px;
+                }
+            }
+        }
+
+        .section:not(:last-child){
+            border-bottom : 2px solid #beb5b5;
+        }
+    }
+
+    .add-user-form{
+        .section{
+            height : 150px;
+            overflow:hidden;
+            padding-top: 30px;
+            .subsection{
+                height: 50px;
+                overflow: hidden;
+                width : 100%;
+
+                .left, .right{
+                    height: 30px;
+                    float:left;
+                    display: inline-block;
+
+                    #invalid-input-tooltip{
+                        width : 200px;
+                        height: 35px;
+                        margin-left : 5px;
+                    }
+
+                    input[type="text"],#invalid-input-tooltip{
+                        display:inline-block;
+                        float:left;
+                    }
+                    input[type="text"]{
+                        padding: 5px;
+                        width : 330px;
+                        height: 25px;
+                        background-color:transparent;
+                        border : 2px solid  #beb5b5;
+                        color:grey;
+                    }
+
+                    input[type="button"]{
+                        cursor: pointer;
+                        border : 1px solid rgba(210, 48, 79, 1);
+                        border-radius : 4px;
+                        -moz-border-radius : 4px;
+                        -webkit-border-radius : 4px;
+                        width: 150px;
+                        height: 35px;
+                        font-family : Proxima Nova;
+                        font-size : 16px;
+                        background-color:transparent;
+                        color:rgba(210, 48, 79, 1);
+                        text-align:center;
+
+                        &:hover{
+                            background : rgba(210, 48, 79, 1);
+                            border-color: rgba(210, 48, 79, 1);
+                            color:white;
+                        }
                     }
 
                 }
