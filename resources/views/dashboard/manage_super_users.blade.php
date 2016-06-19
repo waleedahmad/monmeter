@@ -1,7 +1,7 @@
 @extends('index')
 
 @section('title')
-    Manage Users - Monmeter
+    Super Super Users - Monmeter
 @stop()
 
 @section('user-control')
@@ -14,7 +14,7 @@
 
         {{--Header--}}
         <div class="header">
-            @include('svg.dashboard.header.super_user_header')
+            @include('svg.dashboard.header.super_super_user_header')
         </div>
 
         {{--Content--}}
@@ -22,8 +22,8 @@
 
             {{--Tabs--}}
             <ul class="tabs">
-                <li class="tab-link current" data-tab="tab-1">Super Users</li>
-                <li class="tab-link add-user" data-tab="tab-2">@include('svg.dashboard.tabs.add_user_tab_icon') Add Super User</li>
+                <li class="tab-link current" data-tab="tab-1">Super user</li>
+                <li class="tab-link add-user" data-tab="tab-2">@include('svg.dashboard.tabs.add_user_tab_icon') Add super user</li>
             </ul>
 
             {{--Location List Tab--}}
@@ -135,6 +135,16 @@
 
                                 <div class="right">
                                     <input type="text" name="location" placeholder="Password">
+                                </div>
+                            </div>
+
+                            <div class="subsection">
+                                <div class="left">
+                                    Confirm Password
+                                </div>
+
+                                <div class="right">
+                                    <input type="text" name="location" placeholder="Confirm password">
                                 </div>
                             </div>
 
