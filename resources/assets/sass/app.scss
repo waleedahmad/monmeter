@@ -7,13 +7,16 @@ html,body{
 
 body{
     font-family:"Proxima Nova Regular", 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    overflow: auto;
     .wrapper{
+        overflow: hidden;
         display: block;
         position: relative;
-        min-height: 100%;
-        overflow: hidden;
         width: 1168px;
-        height: 100%;
+        min-height: 100%;
+        height: auto;
+        padding-bottom: 50px;
+
         margin: 0px auto;
 
         background : -moz-linear-gradient(7.1% 109.92% 45deg,rgba(65, 53, 63, 1) 1.19%,rgba(74, 55, 67, 1) 9.9%,rgba(100, 62, 78, 1) 24.33%,rgba(107, 64, 81, 1) 27.87%,rgba(156, 96, 96, 1) 57.14%,rgba(213, 163, 128, 1) 100%);
