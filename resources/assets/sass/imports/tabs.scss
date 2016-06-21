@@ -3,65 +3,65 @@ ul.tabs{
     padding: 0px;
     list-style: none;
 
-}
-ul.tabs li{
+    li{
+        font-size: 18px;
+        font-family : Proxima Nova Light;
+        background: none;
+        float:left;
+        padding-top: 30px;
+        text-align:center;
+        cursor: pointer;
+        width : 305px;
+        height: 50px;
+        background : #5E484A;
+        opacity:0.7;
+        color:white;
+        margin-right: 1px;
 
-    &.add-user{
-        #add-user-tab-icon{
-            width: 14px;
-            height: 14px;
+
+        &.add-user{
+            #add-user-tab-icon{
+                width: 14px;
+                height: 14px;
+            }
         }
-    }
 
-    &.disabled-user{
-        #disabled-users-tab-icon{
-            width: 18px;
-            height: 18px;
+        &.disabled-user{
+            #disabled-users-tab-icon{
+                width: 18px;
+                height: 18px;
+            }
         }
-    }
 
-    font-size: 18px;
-    font-family : Proxima Nova Light;
-    background: none;
-    float:left;
-    padding-top: 30px;
-    text-align:center;
-    cursor: pointer;
-    width : 305px;
-    height: 50px;
-    background : #5E484A;
-    opacity:0.7;
-    color:white;
-    margin-right: 1px;
-}
+        &.current{
 
-ul.tabs li.current{
+            background : #EEE0DF;
+            opacity:1;
+            color:black;
 
-    background : #EEE0DF;
-    opacity:1;
-    color:black;
-
-    &.add-user{
-        #add-user-tab-icon{
-            g{
-                path{
-                    fill: black;
+            &.add-user{
+                #add-user-tab-icon{
+                    g{
+                        path{
+                            fill: black;
+                        }
+                    }
+                    width: 14px;
+                    height: 14px;
                 }
             }
-            width: 14px;
-            height: 14px;
-        }
-    }
 
-    &.disabled-user{
-        #disabled-users-tab-icon{
-            g{
-                path{
-                    fill: black;
+            &.disabled-user{
+                #disabled-users-tab-icon{
+                    g{
+                        path{
+                            fill: black;
+                        }
+                    }
+                    width: 14px;
+                    height: 14px;
                 }
             }
-            width: 14px;
-            height: 14px;
         }
     }
 }
@@ -73,8 +73,9 @@ ul.tabs li.current{
     padding: 15px;
     width: 887px;
     height: 600px;
+
+    &.current{
+        display: inherit;
+    }
 }
 
-.tab-content.current{
-    display: inherit;
-}

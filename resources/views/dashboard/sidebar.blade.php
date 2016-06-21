@@ -4,15 +4,15 @@
     </div>
 
 
-    @if($_SERVER['REQUEST_URI'] === '/dashboard/main' || $_SERVER['REQUEST_URI'] === '/dashboard/user-control')
+    @if($active_sidebar === 'main' || $active_sidebar === 'user-control')
         <a href="/dashboard/main">
-            <div class="dashboard @if($_SERVER['REQUEST_URI'] === '/dashboard/main') {{'active'}} @endif">
+            <div class="dashboard @if($active_sidebar === 'main') {{'active'}} @endif">
                 @include('svg.sidebar.sub_dashboard_icon')
             </div>
         </a>
 
         <a href="/dashboard/user-control">
-            <div class="users @if($_SERVER['REQUEST_URI'] === '/dashboard/user-control') {{'active'}} @endif">
+            <div class="users @if($active_sidebar === 'user-control') {{'active'}} @endif">
                 @include('svg.sidebar.user_list_icon')
             </div>
         </a>
@@ -44,9 +44,9 @@
         </div>
     @endif
 
-    @if($_SERVER['REQUEST_URI'] === '/dashboard/manage/users' || $_SERVER['REQUEST_URI'] === '/dashboard/manage/super-users')
+    @if($active_sidebar === 'super-users' || $active_sidebar === 'super-super-users')
         <a href="/dashboard/manage/users">
-            <div class="super-users @if($_SERVER['REQUEST_URI'] === '/dashboard/manage/users' || $_SERVER['REQUEST_URI'] === '/dashboard/manage/super-users') {{'active'}} @endif">
+            <div class="super-users @if($active_sidebar === 'super-users' || $active_sidebar === 'super-super-users') {{'active'}} @endif">
                 @include('svg.sidebar.super_user_icon')
             </div>
         </a>

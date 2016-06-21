@@ -22,12 +22,21 @@
 
             {{--Tabs--}}
             <ul class="tabs">
-                <li class="tab-link current" data-tab="tab-1">Super user</li>
-                <li class="tab-link add-user" data-tab="tab-2">@include('svg.dashboard.tabs.add_user_tab_icon') Add super user</li>
+
+                <a href="/dashboard/manage/super-users/users-list">
+                    <li class="tab-link @if($active_tab === 'users-list') current @endif" data-tab="tab-1">Super user</li>
+                </a>
+
+                <a href="/dashboard/manage/super-users/add-user">
+                    <li class="tab-link @if($active_tab === 'add-user') current @endif add-user" data-tab="tab-2">@include('svg.dashboard.tabs.add_user_tab_icon') Add super user</li>
+                </a>
+
+
+
             </ul>
 
             {{--Location List Tab--}}
-            <div id="tab-1" class="tab-content current user-list">
+            <div id="tab-1" class="tab-content @if($active_tab === 'users-list') current @endif user-list">
 
                 {{--Locations Table--}}
                 <div class="data">
@@ -112,7 +121,7 @@
             </div>
 
             {{--Add Location Tab--}}
-            <div id="tab-2" class="tab-content  add-user">
+            <div id="tab-2" class="tab-content @if($active_tab === 'add-user') current @endif add-user">
 
                 {{--Add Location Form--}}
                 <div class="add-user-form">

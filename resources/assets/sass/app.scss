@@ -8,6 +8,8 @@ html,body{
 body{
     font-family:"Proxima Nova Regular", 'Helvetica Neue', Arial, Helvetica, sans-serif;
     overflow: auto;
+
+    // Main wrapper
     .wrapper{
         overflow: hidden;
         display: block;
@@ -31,8 +33,5 @@ body{
 
         @import "imports/auth";
         @import "imports/dashboard";
-        @import "imports/user-dash";
-        @import "imports/super_user";
     }
-
 }

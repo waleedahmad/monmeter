@@ -1,12 +1,13 @@
 @import "sidebar";
 
-
+// display sidebar and content panels inline
 .sidebar,
 .user-control,
 .dashboard,
 .super-user-control{
     display: inline-block;
 }
+
 
 .user-control,
 .dashboard,
@@ -16,8 +17,11 @@
     height: 100%;
     float:right;
 
+    // content header
     .header{
         margin-top: 40px;
+
+        // header icons
         #dashboard-header,
         #user-control-header,
         #super-user-header{
@@ -31,12 +35,15 @@
         }
     }
 
+    // content
     .content{
         margin-top: 50px;
         width: 100%;
 
         @import "tabs";
         @import "dash_main";
+        @import "user-dash";
+        @import "super_user";
     }
 
 

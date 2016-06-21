@@ -22,13 +22,21 @@
 
             {{--Tabs--}}
             <ul class="tabs">
-                <li class="tab-link current" data-tab="tab-1">User List</li>
-                <li class="tab-link add-user" data-tab="tab-2">@include('svg.dashboard.tabs.add_user_tab_icon') Add User</li>
-                <li class="tab-link disabled-user" data-tab="tab-3">@include('svg.dashboard.tabs.disabled_users_tab_icon') Disabled User List</li>
+                <a href="/dashboard/user-control/user-list">
+                    <li class="tab-link @if($active_tab === 'user-list') current @endif" data-tab="tab-1">User List</li>
+                </a>
+
+                <a href="/dashboard/user-control/add-user">
+                    <li class="tab-link add-user @if($active_tab === 'add-user') current @endif" data-tab="tab-2">@include('svg.dashboard.tabs.add_user_tab_icon') Add User</li>
+                </a>
+
+                <a href="/dashboard/user-control/disabled-users">
+                    <li class="tab-link disabled-user @if($active_tab === 'disabled-users') current @endif" data-tab="tab-3">@include('svg.dashboard.tabs.disabled_users_tab_icon') Disabled User List</li>
+                </a>
             </ul>
 
             {{--User List Tab--}}
-            <div id="tab-1" class="tab-content current user-list">
+            <div id="tab-1" class="tab-content @if($active_tab === 'user-list') current @endif user-list">
 
                 {{--User List Table--}}
                 <div class="data">
@@ -194,12 +202,12 @@
             </div>
 
             {{--Add User Tab--}}
-            <div id="tab-2" class="tab-content">
+            <div id="tab-2" class="tab-content @if($active_tab === 'add-user') current @endif">
                 Add User
             </div>
 
             {{--Disabled Users Tab--}}
-            <div id="tab-3" class="tab-content disabled-users">
+            <div id="tab-3" class="tab-content @if($active_tab === 'disabled-users') current @endif disabled-users">
 
                 {{--Disabled Users Table--}}
                 <div class="data">
