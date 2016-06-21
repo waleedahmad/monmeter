@@ -34,6 +34,7 @@
                 </a>
             </ul>
 
+            @if($active_tab === 'real-time')
             {{--Realtime Tab Content--}}
             <div id="tab-1" class="tab-content @if($active_tab === 'real-time') current @endif real-time">
                 {{--Header--}}
@@ -81,6 +82,10 @@
                 </div>
             </div>
 
+            @endif
+
+
+            @if($active_tab === 'last-reading')
             {{--Last Reading Tab Content--}}
             <div id="tab-2" class="tab-content @if($active_tab === 'last-reading') current @endif last-reading">
                 {{--Header--}}
@@ -122,7 +127,9 @@
                     </p>
                 </div>
             </div>
+            @endif
 
+            @if($active_tab === 'log-history')
             {{--Log History Tab--}}
             <div id="tab-3" class="tab-content @if($active_tab === 'log-history') current @endif log-history">
 
@@ -298,6 +305,7 @@
                     </table>
                 </div>
             </div>
+            @endif
         </div>
     </div>
 @stop

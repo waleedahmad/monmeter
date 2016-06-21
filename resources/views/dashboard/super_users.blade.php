@@ -36,6 +36,7 @@
 
             </ul>
 
+            @if($active_tab === 'location-list')
             {{--Location List Tab--}}
             <div id="tab-1" class="tab-content @if($active_tab === 'location-list') current @endif location-list">
 
@@ -120,7 +121,9 @@
                     </table>
                 </div>
             </div>
+            @endif
 
+            @if($active_tab === 'add-location')
             {{--Add Location Tab--}}
             <div id="tab-2" class="tab-content @if($active_tab === 'add-location') current @endif add-location">
 
@@ -218,6 +221,7 @@
                     </form>
                 </div>
             </div>
+            @endif
         </div>
     </div>
 @stop

@@ -35,6 +35,7 @@
                 </a>
             </ul>
 
+            @if($active_tab === 'user-list')
             {{--User List Tab--}}
             <div id="tab-1" class="tab-content @if($active_tab === 'user-list') current @endif user-list">
 
@@ -200,12 +201,16 @@
                     </table>
                 </div>
             </div>
+            @endif
 
+            @if($active_tab === 'add-user')
             {{--Add User Tab--}}
             <div id="tab-2" class="tab-content @if($active_tab === 'add-user') current @endif">
                 Add User
             </div>
+            @endif
 
+            @if($active_tab === 'disabled-users')
             {{--Disabled Users Tab--}}
             <div id="tab-3" class="tab-content @if($active_tab === 'disabled-users') current @endif disabled-users">
 
@@ -262,6 +267,7 @@
                     </table>
                 </div>
             </div>
+            @endif
         </div>
 
     </div>
