@@ -26,9 +26,17 @@
                     <li class="tab-link @if($active_tab === 'user-list') current @endif">User List</li>
                 </a>
 
+                @if($active_tab != 'edit-user')
                 <a href="/dashboard/user-control/add-user">
                     <li class="tab-link add-user @if($active_tab === 'add-user') current @endif">@include('svg.dashboard.tabs.add_user_tab_icon') Add User</li>
                 </a>
+                @endif
+
+                @if($active_tab === 'edit-user')
+                <a href="/dashboard/user-control/add-user">
+                    <li class="tab-link add-user @if($active_tab === 'edit-user') current @endif">@include('svg.dashboard.tabs.add_user_tab_icon') Add User</li>
+                </a>
+                @endif
 
                 <a href="/dashboard/user-control/disabled-users">
                     <li class="tab-link disabled-user @if($active_tab === 'disabled-users') current @endif">@include('svg.dashboard.tabs.disabled_users_tab_icon') Disabled User List</li>
@@ -82,7 +90,9 @@
                                     </td>
 
                                     <td class="edit-column">
-                                        @include('svg.dashboard.tabs.user_edit_icon')
+                                        <a href="/dashboard/user-control/edit-user/{{$client->id}}">
+                                            @include('svg.dashboard.tabs.user_edit_icon')
+                                        </a>
                                     </td>
 
                                     <td class="status-column">
@@ -177,7 +187,7 @@
                                     </div>
 
                                     <div class="right">
-                                        <textarea name="enotes" required></textarea>
+                                        <textarea name="enotes"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -240,7 +250,9 @@
                                     </td>
 
                                     <td class="edit-column">
-                                        @include('svg.dashboard.tabs.user_edit_icon')
+                                        <a href="/dashboard/user-control/edit-user/{{$client->id}}">
+                                            @include('svg.dashboard.tabs.user_edit_icon')
+                                        </a>
                                     </td>
 
                                     <td class="status-column">
@@ -252,6 +264,124 @@
                             @endforeach
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            @endif
+
+            @if($active_tab === 'edit-user')
+                {{--Add User Tab--}}
+                <div class="tab-content @if($active_tab === 'edit-user') current @endif add-user">
+                    {{--Add Location Form--}}
+                    <div class="add-user-form">
+                        <form action="/dashboard/user-control/update" method="POST">
+
+                            <div class="messages">
+                                <div class="message edit-message">
+                                    <div class="icon">
+                                        @include('svg.dashboard.tabs.edit_mode_icon')
+                                    </div>
+                                    <div class="text">
+                                        You are now in Edit mode
+                                    </div>
+                                </div>
+
+                                <div class="message disabled-message @if($client->access){{'hide'}}@endif">
+
+                                    <div class="icon">
+                                        @include('svg.dashboard.tabs.edit_mode_disable_user_icon')
+                                    </div>
+                                    <div class="text">
+                                        User has been Disabled - This user can't access this system
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="section">
+                                <div class="subsection">
+                                    <div class="left">
+                                        Access Control
+                                    </div>
+
+                                    <div class="right">
+                                        <ul>
+                                            <li>Enable</li>
+                                            <li class="access access-enable @if($client->access) ticked @endif">@include('svg.dashboard.tabs.user_access_logo')</li>
+                                            <li>Disable</li>
+                                            <li class="access access-disable @if(!$client->access) ticked @endif">@include('svg.dashboard.tabs.user_access_logo')</li>
+                                        </ul>
+
+                                        <input type="button" value="Update" class="accessUpdateBtn">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="section">
+                                <div class="subsection">
+                                    <div class="left">
+                                        Personal Information
+                                    </div>
+
+                                    <div class="right">
+                                        <input type="text" name="name" placeholder="Name" value="{{$client->name}}" required>
+                                    </div>
+                                </div>
+
+                                <div class="subsection">
+                                    <div class="left">
+
+                                    </div>
+
+                                    <div class="right">
+                                        <input type="text" name="company" placeholder="Company" value="{{$client->company}}" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="section">
+                                <div class="subsection">
+                                    <div class="left">
+                                        Added to System
+                                    </div>
+
+                                    <div class="right">
+                                        <input type="text" name="date" id="uc-date" placeholder="Date"  value="{{$client->added}}" required>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="section">
+                                <div class="subsection">
+                                    <div class="left">
+                                        Card/tag Identifier
+                                    </div>
+
+                                    <div class="right">
+                                        <input type="text" name="card_identifier" placeholder="0x8D 0xFD 0x72 0x65" value="{{$client->card_tag}}" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="section enotes">
+                                <div class="subsection">
+                                    <div class="left">
+                                        eNotes
+                                    </div>
+
+                                    <div class="right">
+                                        <textarea name="enotes">{{$client->enote}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="user-access" id="user-access" value="@if($client->access){{'enabled'}}@else{{'disabled'}}@endif">
+                            <input type="hidden" name="client-id" id="client-id" value="{{$client->id}}">
+                            {{csrf_field()}}
+
+                            <div class="submit">
+                                <input type="submit" value="Update">
+                            </div>
+                        </form>
                     </div>
                 </div>
             @endif

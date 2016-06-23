@@ -11,6 +11,10 @@ use App\Http\Requests;
 
 class suController extends Controller
 {
+    /**
+     * Super user clients list
+     * @return mixed
+     */
     public function locationList(){
 
         $locations = DB::table('users')
@@ -23,6 +27,11 @@ class suController extends Controller
             ->with('locations', $locations);
     }
 
+    /**
+     * Render manage super users view
+     * @param $active
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function createView($active){
 
         if($active === 'add-location'  || $active === 'location-list'){
@@ -45,6 +54,11 @@ class suController extends Controller
         }
     }
 
+    /**
+     * Create a new Client
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function createLocation(Request $request){
         $validator = Validator::make($request->all(), [
             'loc_name'  =>  'required',

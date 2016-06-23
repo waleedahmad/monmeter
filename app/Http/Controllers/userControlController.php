@@ -11,6 +11,10 @@ use App\Http\Requests;
 
 class userControlController extends Controller
 {
+    /**
+     * Client list
+     * @return mixed
+     */
     public function userList(){
         $clients = Client::where('admin','=',Auth::user()->email)->get();
         return view('dashboard.user_control')
@@ -19,6 +23,11 @@ class userControlController extends Controller
             ->with('clients', $clients);
     }
 
+    /**
+     * Render UserControl tabs
+     * @param $active
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function userListView($active){
         if($active === 'user-list' || $active === 'add-user' || $active === 'disabled-users'){
 
@@ -48,6 +57,11 @@ class userControlController extends Controller
 
     }
 
+    /**
+     * Create new client
+     * @param Request $request
+     * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function createUser(Request $request){
         $validator = Validator($request->all(), [
             'name'  =>  'required',
@@ -70,6 +84,56 @@ class userControlController extends Controller
             ]);
 
             if($client->save()){
+                return redirect('/dashboard/user-control/user-list');
+            }
+        }else{
+            return redirect('/dashboard/user-control/add-user')
+                ->withErrors($validator);
+        }
+    }
+
+    public function editUser($id){
+        $client = Client::where('id','=',$id)->first();
+        return view('dashboard.user_control')
+            ->with('active_tab','edit-user')
+            ->with('active_sidebar', 'user-control')
+            ->with('client', $client);
+    }
+
+    public function updateAccess(Request $request){
+        $client_id = $request->input('client');
+        $access = $request->input('access');
+        $access = ($access === 'enabled') ? true : false;
+
+        $client = Client::where('id','=',$client_id);
+        if($client->update([
+            'access'    => $access
+        ])){
+            return response()->json(['updated'  =>   true]);
+        }
+    }
+
+    public function updateUser(Request $request){
+        $validator = Validator($request->all(), [
+            'name'  =>  'required',
+            'company'   =>  'required',
+            'date'  =>  'required|date',
+            'card_identifier'   =>  'required',
+            'user-access'   =>  'required',
+        ]);
+
+        if($validator->passes()){
+            $access = ($request->input('user-access') === 'enabled') ? true : false;
+            $client = Client::where('id','=',$request->input('client-id'));
+            if($client->update([
+                'name'  =>  $request->input('name'),
+                'company'   =>  $request->input('company'),
+                'added'  =>  $request->input('date'),
+                'card_tag'  =>  $request->input('card_identifier'),
+                'enote' =>  $request->input('enote'),
+                'access'    =>  $access,
+                'admin' =>  Auth::user()->email
+            ])){
                 return redirect('/dashboard/user-control/user-list');
             }
         }else{

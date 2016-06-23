@@ -21,17 +21,15 @@ Route::group(['middleware'	=>	'auth'], function(){
     // Admin group
     Route::group(['middleware'  =>  'admin'], function(){
         // Main
-        Route::get('/dashboard/main', function () {
-            return view('dashboard.dashboard')->with('active_tab','real-time')->with('active_sidebar', 'main');
-        });
-
-        Route::get('/dashboard/main/{active}', function ($active) {
-            return view('dashboard.dashboard')->with('active_tab',$active)->with('active_sidebar', 'main');
-        });
+        Route::get('/dashboard/main', 'DashboardController@realTime');
+        Route::get('//dashboard/main/{active}', 'DashboardController@createView');
 
         // User Control
         Route::get('/dashboard/user-control', 'userControlController@userList');
+        Route::post('/dashboard/user-control/update/access', 'userControlController@updateAccess');
+        Route::post('/dashboard/user-control/update/', 'userControlController@updateUser');
         Route::post('/dashboard/user-control/create', 'userControlController@createUser');
+        Route::get('/dashboard/user-control/edit-user/{id}', 'userControlController@editUser');
         Route::get('/dashboard/user-control/{active}', 'userControlController@userListView');
     });
 

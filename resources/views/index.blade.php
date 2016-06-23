@@ -8,6 +8,7 @@
             href="//f.fontdeck.com/s/css/sDLal4th9BQH2lvZFncwJ6sQBs4/{{$_SERVER['SERVER_NAME']}}/59246.css"
             type="text/css"
     />
+    <meta name="_token" content="{{csrf_token()}}">
     <link rel="stylesheet" href="/assets/bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css">
     <link rel="stylesheet" href="/assets/css/app.min.css">
 </head>
