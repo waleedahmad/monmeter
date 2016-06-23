@@ -72,7 +72,8 @@ ul.tabs{
     background : #EEE0DF;
     padding: 15px;
     width: 887px;
-    height: 600px;
+    min-height: 500px;
+    height : auto;
 
     &.current{
         display: inherit;

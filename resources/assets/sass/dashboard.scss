@@ -4,47 +4,58 @@
 .sidebar,
 .user-control,
 .dashboard,
-.super-user-control{
+.super-user-control,
+.manage-super-user{
     display: inline-block;
 }
-
 
 .user-control,
 .dashboard,
 .super-user-control,
-.manage-super-user{
+.manage-super-user {
     width: 950px;
     height: 100%;
-    float:right;
+    float: right;
 
     // content header
-    .header{
+    .header {
         margin-top: 40px;
 
         // header icons
         #dashboard-header,
         #user-control-header,
-        #super-user-header{
+        #super-user-header {
             width: 250px;
             height: 60px;
         }
 
-        #super-super-header-icon{
+        #super-super-header-icon {
             width: 280px;
             height: 70px;
         }
     }
 
-    // content
-    .content{
+    .content {
         margin-top: 50px;
         width: 100%;
+        height: 100%;
 
-        @import "tabs";
-        @import "dash_main";
-        @import "user-dash";
-        @import "super_user";
+        @import "imports/tabs";
     }
+}
 
+.user-control{
+    @import "imports/user_control_tabs";
+}
 
+.dashboard{
+    @import "imports/main_dashboard_tabs";
+}
+
+.super-user-control{
+    @import "imports/super_users_tabs";
+}
+
+.manage-super-user{
+    @import "imports/manage_super_users";
 }

@@ -31,7 +31,7 @@ body{
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#41353F',endColorstr='#D5A380' , GradientType=1);
 
 
-        @import "imports/auth";
-        @import "imports/dashboard";
+        @import "auth";
+        @import "dashboard";
     }
 }

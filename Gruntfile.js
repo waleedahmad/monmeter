@@ -31,7 +31,7 @@ module.exports = function(grunt) {
             }
         },
 
-        /*"babel" : {
+        "babel" : {
             options: {
                 sourceMap: true,
                 presets: ['es2015']
@@ -41,7 +41,7 @@ module.exports = function(grunt) {
                     'public/assets/js/app.js': 'public/assets/js/app.js'
                 }
             }
-        },*/
+        },
 
 
         watch: {
@@ -49,7 +49,7 @@ module.exports = function(grunt) {
                 files: [
                     'resources/assets/js/*.js'
                 ],
-                tasks: ['concat', /*'babel' ,*/'uglify']
+                tasks: ['concat', 'babel' ,'uglify']
             },
 
             css: {
@@ -77,5 +77,5 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-babel');
 
-    grunt.registerTask('default', ['concat', 'sass', /*'babel',*/ 'uglify', 'watch']);
+    grunt.registerTask('default', ['concat', 'sass', 'babel', 'uglify', 'watch']);
 };

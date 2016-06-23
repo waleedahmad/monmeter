@@ -24,21 +24,17 @@
             <ul class="tabs">
 
                 <a href="/dashboard/manage/users/location-list">
-                    <li class="tab-link @if($active_tab === 'location-list') current @endif" data-tab="tab-1">Location List</li>
+                    <li class="tab-link @if($active_tab === 'location-list') current @endif">Location List</li>
                 </a>
 
                 <a href="/dashboard/manage/users/add-location">
-                    <li class="tab-link @if($active_tab === 'add-location') current @endif add-user" data-tab="tab-2">@include('svg.dashboard.tabs.add_user_tab_icon') Add Location</li>
+                    <li class="tab-link @if($active_tab === 'add-location') current @endif add-user">@include('svg.dashboard.tabs.add_user_tab_icon') Add Location</li>
                 </a>
-
-
-
-
             </ul>
 
             @if($active_tab === 'location-list')
             {{--Location List Tab--}}
-            <div id="tab-1" class="tab-content @if($active_tab === 'location-list') current @endif location-list">
+            <div class="tab-content @if($active_tab === 'location-list') current @endif location-list">
 
                 {{--Locations Table--}}
                 <div class="data">
@@ -64,59 +60,26 @@
                         </thead>
 
                         <tbody>
-                        <tr>
-                            <td>
-                                Essex Flying school
-                            </td>
 
-                            <td class="view">
-                                <a href="">View</a>
-                            </td>
+                            @foreach($locations as $location)
+                                <tr>
+                                    <td>
+                                        {{$location->location}}
+                                    </td>
 
-                            <td class="edit">
-                                <a href="">Edit</a>
-                            </td>
+                                    <td class="view">
+                                        <a href="">View</a>
+                                    </td>
 
-                            <td class="remove">
-                                <a href="">Remove</a>
-                            </td>
-                        </tr>
+                                    <td class="edit">
+                                        <a href="">Edit</a>
+                                    </td>
 
-                        <tr>
-                            <td>
-                                Essex Flying school
-                            </td>
-
-                            <td class="view">
-                                <a href="">View</a>
-                            </td>
-
-                            <td class="edit">
-                                <a href="">Edit</a>
-                            </td>
-
-                            <td class="remove">
-                                <a href="">Remove</a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                Essex Flying school
-                            </td>
-
-                            <td class="view">
-                                <a href="">View</a>
-                            </td>
-
-                            <td class="edit">
-                                <a href="">Edit</a>
-                            </td>
-
-                            <td class="remove">
-                                <a href="">Remove</a>
-                            </td>
-                        </tr>
+                                    <td class="remove">
+                                        <a href="">Remove</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -125,11 +88,11 @@
 
             @if($active_tab === 'add-location')
             {{--Add Location Tab--}}
-            <div id="tab-2" class="tab-content @if($active_tab === 'add-location') current @endif add-location">
+            <div class="tab-content @if($active_tab === 'add-location') current @endif add-location">
 
                 {{--Add Location Form--}}
                 <div class="location-form">
-                    <form action="">
+                    <form action="/dashboard/manage/users/create" method="POST">
                         <div class="section">
                             <div class="subsection">
                                 <div class="left">
@@ -137,7 +100,7 @@
                                 </div>
 
                                 <div class="right">
-                                    <input type="text" name="location" placeholder="Name/code">
+                                    <input type="text" name="loc_name" placeholder="Name/code" required>
                                 </div>
                             </div>
 
@@ -147,7 +110,7 @@
                                 </div>
 
                                 <div class="right">
-                                    <input type="text" name="location" placeholder="Date">
+                                    <input type="text" name="date" id="loc-date" placeholder="Date" required>
                                 </div>
                             </div>
                         </div>
@@ -159,7 +122,7 @@
                                 </div>
 
                                 <div class="right">
-                                    <input type="text" name="location" placeholder="Name">
+                                    <input type="text" name="name" placeholder="Name" required>
                                 </div>
                             </div>
 
@@ -169,7 +132,7 @@
                                 </div>
 
                                 <div class="right">
-                                    <input type="text" name="location" placeholder="Job Position">
+                                    <input type="text" name="job_position" placeholder="Job Position" required>
                                 </div>
                             </div>
                         </div>
@@ -181,7 +144,7 @@
                                 </div>
 
                                 <div class="right">
-                                    <input type="text" name="location" placeholder="email">
+                                    <input type="email" name="email" placeholder="email" required>
                                 </div>
                             </div>
 
@@ -191,7 +154,7 @@
                                 </div>
 
                                 <div class="right">
-                                    <input type="text" name="location" placeholder="password"> @include('svg.dashboard.tabs.invalid_field_tool_tip')
+                                    <input type="password" name="password" placeholder="password" required> @include('svg.dashboard.tabs.invalid_field_tool_tip')
                                 </div>
                             </div>
                         </div>
@@ -203,7 +166,7 @@
                                 </div>
 
                                 <div class="right">
-                                    <input type="text" name="location" placeholder="static ip">
+                                    <input type="text" name="static_ip" placeholder="static ip" required>
                                 </div>
                             </div>
 
@@ -213,7 +176,16 @@
                                 </div>
 
                                 <div class="right">
-                                    <input type="text" name="location" placeholder="MAC">
+                                    <input type="text" name="mac" placeholder="MAC" required>
+                                </div>
+                            </div>
+                            {{csrf_field()}}
+                            <div class="subsection">
+                                <div class="left">
+                                </div>
+
+                                <div class="right">
+                                    <input type="submit" name="submit" value="Create">
                                 </div>
                             </div>
                         </div>

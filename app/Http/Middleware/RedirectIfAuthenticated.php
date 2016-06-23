@@ -18,7 +18,17 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect('/');
+            $user = Auth::user();
+            switch($user->role){
+                case 'super_super':
+                    return redirect('/dashboard/manage/super-users');
+                case 'super':
+                    return redirect('/dashboard/manage/users');
+                case 'admin':
+                    return redirect('/dashboard/main');
+                default:
+                    return redirect('/login');
+            }
         }
 
         return $next($request);

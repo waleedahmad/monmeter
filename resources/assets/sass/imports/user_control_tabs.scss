@@ -1,0 +1,191 @@
+// user-control tab
+// users list and disable user styles
+.user-list, .disabled-users {
+    .data{
+        margin-left: 20px;
+        margin-top: 20px;
+
+        table{
+            width: 830px;
+            background-color:#beb5b5;
+
+            thead{
+                tr{
+                    td{
+                        height : 30px;
+                        text-align:center;
+                    }
+                }
+            }
+
+            tbody{
+                tr{
+                    height: 20px;
+                    td{
+                        background : #EEE0DF;
+                        height : 10px;
+                        padding: 5px;
+                        color : #616161;
+                        font-family : Proxima Nova;
+                        font-size : 16px;
+
+                        .user-edit-icon,.disable-user-icon{
+                            width : 18px;
+                            height: 18px;
+                            margin-left : 40px;
+                            cursor: pointer;
+                        }
+
+                        .user-edit-icon{
+                            &:hover{
+                                g{
+                                    path{
+                                        fill : #D2304F;
+                                    }
+                                }
+                            }
+                        }
+
+                        &.edit-column,&.status-column{
+                            width : 100px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// add-users tab styles
+
+.add-user {
+    .add-user-form {
+        .section {
+            height: auto;
+            overflow: hidden;
+            padding-top: 25px;
+            padding-bottom : 25px;
+            border-bottom: 2px solid #beb5b5;
+            .subsection {
+                height: 50px;
+                overflow: hidden;
+                width: 100%;
+
+                .left, .right {
+                    padding-top: 2px;
+                    height: 30px;
+                    float: left;
+                    display: inline-block;
+
+                    #invalid-input-tooltip {
+                        width: 200px;
+                        height: 35px;
+                        margin-left: 5px;
+                    }
+
+                    input[type="text"], #invalid-input-tooltip {
+                        display: inline-block;
+                        float: left;
+                    }
+                    input[type="text"] {
+                        padding: 5px;
+                        width: 330px;
+                        height: 25px;
+                        background-color: transparent;
+                        border: 2px solid #beb5b5;
+                        color: grey;
+                    }
+
+                    textarea {
+                        padding: 5px;
+                        width: 620px;
+                        height: 180px;
+                        background-color: transparent;
+                        border: 2px solid #beb5b5;
+                        color: grey;
+                        resize: none;
+                    }
+                }
+
+                .left {
+                    width: 250px;
+                    font-weight: bold;
+                    color:#616161;
+                }
+
+                .right {
+                    width: 600px;
+
+                    ul{
+                        padding : 0px;
+                        margin : 0px;
+                        list-style : none;
+                        li{
+                            padding : 0px;
+                            display: block;
+                            float:left;
+                            height : 30px;
+                            margin-right: 10px;
+
+
+                            .user-access-btn{
+                                cursor: pointer;
+                                height: 20px;
+                                width : 20px;
+
+                                g{
+                                    path,circle{
+                                        fill : #beb5b5;
+                                    }
+                                }
+                            }
+
+                            &.ticked{
+                                .user-access-btn{
+                                    g{
+                                        path,circle{
+                                            fill : #C1354E;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .section.enotes{
+            border-bottom:none;
+            padding-bottom : 20px;
+            .subsection{
+                height : 200px;
+            }
+        }
+
+        .submit{
+            height : 50px;
+            input{
+                cursor: pointer;
+                border: 1px solid rgba(210, 48, 79, 1);
+                border-radius: 4px;
+                -moz-border-radius: 4px;
+                -webkit-border-radius: 4px;
+                width: 150px;
+                height: 35px;
+                font-family: Proxima Nova;
+                font-size: 16px;
+                background-color: transparent;
+                color: rgba(210, 48, 79, 1);
+                text-align: center;
+                float:right;
+
+                &:hover {
+                    background: rgba(210, 48, 79, 1);
+                    border-color: rgba(210, 48, 79, 1);
+                    color: white;
+                }
+            }
+        }
+    }
+}

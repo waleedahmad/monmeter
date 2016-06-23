@@ -22,21 +22,21 @@
             {{--Tabs--}}
             <ul class="tabs">
                 <a href="/dashboard/main/real-time">
-                    <li class="tab-link @if($active_tab === 'real-time') current @endif" data-tab="tab-1">Real Time</li>
+                    <li class="tab-link @if($active_tab === 'real-time') current @endif">Real Time</li>
                 </a>
 
                 <a href="/dashboard/main/last-reading">
-                    <li class="tab-link add-user @if($active_tab === 'last-reading') current @endif" data-tab="tab-2"> Last Reading</li>
+                    <li class="tab-link add-user @if($active_tab === 'last-reading') current @endif" > Last Reading</li>
                 </a>
 
                 <a href="/dashboard/main/log-history">
-                    <li class="tab-link disabled-user @if($active_tab === 'log-history') current @endif" data-tab="tab-3"> Log History</li>
+                    <li class="tab-link disabled-user @if($active_tab === 'log-history') current @endif" > Log History</li>
                 </a>
             </ul>
 
             @if($active_tab === 'real-time')
             {{--Realtime Tab Content--}}
-            <div id="tab-1" class="tab-content @if($active_tab === 'real-time') current @endif real-time">
+            <div class="tab-content @if($active_tab === 'real-time') current @endif real-time">
                 {{--Header--}}
                 <div class="tab-header">
 
@@ -81,13 +81,12 @@
                     <div id="chart_div" style="width: 900px; height: 500px;"> </div>
                 </div>
             </div>
-
             @endif
 
 
             @if($active_tab === 'last-reading')
             {{--Last Reading Tab Content--}}
-            <div id="tab-2" class="tab-content @if($active_tab === 'last-reading') current @endif last-reading">
+            <div class="tab-content @if($active_tab === 'last-reading') current @endif last-reading">
                 {{--Header--}}
                 <div class="tab-header">
 
@@ -131,7 +130,7 @@
 
             @if($active_tab === 'log-history')
             {{--Log History Tab--}}
-            <div id="tab-3" class="tab-content @if($active_tab === 'log-history') current @endif log-history">
+            <div class="tab-content @if($active_tab === 'log-history') current @endif log-history">
 
                 {{--Timeline Button bar--}}
                 <div class="time-line">

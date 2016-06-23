@@ -4,7 +4,7 @@
         width : 100%;
         margin-top: 10px;
         position:relative;
-        
+
         .details, .raw-data{
             display: inline-block;
             width:50%;
@@ -28,13 +28,11 @@
 
         .raw-data{
             .get-data{
-
                 border-radius : 3px;
                 -moz-border-radius : 3px;
                 -webkit-border-radius : 3px;
                 width: 138px;
                 height : 34px;
-
                 background : rgba(238, 224, 223, 1);
                 border-style : Solid;
                 border-color : #C1354E;

@@ -1,0 +1,139 @@
+.location-list{
+    .data{
+        margin-left: 20px;
+        margin-top: 20px;
+        table{
+            width: 830px;
+            background-color:#beb5b5;
+
+            thead{
+                tr{
+                    td{
+                        height : 30px;
+                        text-align:center;
+                    }
+                }
+            }
+
+            tbody{
+                tr{
+                    td{
+                        background : #EEE0DF;
+                        height : 30px;
+                        padding: 5px;
+                        color : #616161;
+                        font-family : Proxima Nova;
+                        font-size : 16px;
+
+                        #log-history-disable-user-icon{
+                            width : 18px;
+                            height: 18px;
+                            margin-left : 10px;
+                        }
+
+                        #user-edit-icon{
+                            width : 18px;
+                            height: 18px;
+                        }
+
+                        &.view, &.edit, &.remove{
+                            a{
+                                color:grey;
+
+                                &:hover{
+                                    color : #C1354E;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.add-location{
+    .location-form{
+        margin-left: 20px;
+        width : 850px;
+
+        .section{
+            height : auto;
+            overflow:hidden;
+            padding-top: 30px;
+            padding-bottom : 30px;
+            .subsection{
+                height: 50px;
+                overflow: hidden;
+                width : 100%;
+
+                .left, .right{
+                    padding-top: 2px;
+                    height: 30px;
+                    float:left;
+                    display: inline-block;
+
+                    #invalid-input-tooltip{
+                        width : 200px;
+                        height: 35px;
+                        margin-left : 5px;
+                    }
+
+                    input,#invalid-input-tooltip{
+                        display:inline-block;
+                        float:left;
+                    }
+                    input{
+                        padding: 5px;
+                        width : 330px;
+                        height: 25px;
+                        background-color:transparent;
+                        border : 2px solid  #beb5b5;
+                        color:grey;
+                    }
+
+                    input[type="submit"]{
+                        cursor: pointer;
+                        border : 1px solid rgba(210, 48, 79, 1);
+                        border-radius : 4px;
+                        -moz-border-radius : 4px;
+                        -webkit-border-radius : 4px;
+                        width: 150px;
+                        height: 35px;
+                        font-family : Proxima Nova;
+                        font-size : 16px;
+                        background-color:transparent;
+                        color:rgba(210, 48, 79, 1);
+                        text-align:center;
+                        float:right;
+
+                        &:hover{
+                            background : rgba(210, 48, 79, 1);
+                            border-color: rgba(210, 48, 79, 1);
+                            color:white;
+                        }
+                    }
+
+                }
+
+                .left{
+                    font-weight: bold;
+                    color:#616161;
+                    width : 250px;
+                }
+
+                .right{
+                    width : 600px;
+                }
+            }
+        }
+
+        .section:not(:last-child){
+            border-bottom : 2px solid #beb5b5;
+        }
+
+        .section:last-child{
+            height: 150px;
+        }
+    }
+}

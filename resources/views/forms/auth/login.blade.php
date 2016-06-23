@@ -16,9 +16,12 @@
 
             {{--Login Form--}}
             <div class="right">
-                <input type="text" class="email" placeholder="Email">
-                <input type="text" class="password" placeholder="Password">
-                <input type="button" class="login" value="Connect">
+                <form action="/login" method="POST">
+                    <input type="text" class="email" name="email" placeholder="Email">
+                    <input type="password" class="password" name="password" placeholder="Password">
+                    {{csrf_field()}}
+                    <input type="submit" class="login" value="Connect">
+                </form>
             </div>
         </div>
     </div>
