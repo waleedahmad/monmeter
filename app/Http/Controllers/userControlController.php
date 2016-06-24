@@ -68,7 +68,7 @@ class userControlController extends Controller
             'company'   =>  'required',
             'date'  =>  'required|date',
             'card_identifier'   =>  'required',
-            'user-access'   =>  'required',
+            'user_access'   =>  'required',
         ]);
 
         if($validator->passes()){
@@ -84,11 +84,10 @@ class userControlController extends Controller
             ]);
 
             if($client->save()){
-                return redirect('/dashboard/user-control/user-list');
+                return response()->json(true);
             }
         }else{
-            return redirect('/dashboard/user-control/add-user')
-                ->withErrors($validator);
+            return response()->json(false);
         }
     }
 
@@ -140,5 +139,15 @@ class userControlController extends Controller
             return redirect('/dashboard/user-control/add-user')
                 ->withErrors($validator);
         }
+    }
+
+    public function userExists(Request $request){
+        $client = Client::where('card_tag','=',$request->input('tag'));
+
+        if($client->count()){
+            return response()->json(true);
+        }
+
+        return response()->json(false);
     }
 }

@@ -90,11 +90,25 @@ class suController extends Controller
                 ]);
 
                 if($details->save()){
-                    return redirect('/dashboard/manage/users/location-list');
+                    return response()->json(true);
                 }
             }
         }else{
-            return $validator->errors()->all();
+            return response()->json(false);
         }
+    }
+
+    /**
+     * Check if user exist
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function userExist(Request $request){
+        $email = $request->input('email');
+        $user = User::where('email', '=', $email);
+        if($user->count()){
+            return response()->json(true);
+        }
+        return response()->json(false);
     }
 }

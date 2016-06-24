@@ -120,13 +120,17 @@
                     float: left;
                     display: inline-block;
 
-                    #invalid-input-tooltip {
+                    .invalid-input-tooltip {
                         width: 200px;
                         height: 35px;
                         margin-left: 5px;
+
+                        text{
+                            font-size: 6px;
+                        }
                     }
 
-                    input[type="text"], #invalid-input-tooltip {
+                    input[type="text"], .invalid-input-tooltip {
                         display: inline-block;
                         float: left;
                     }
@@ -136,6 +140,10 @@
                         height: 25px;
                         background-color: transparent;
                         border: 2px solid #beb5b5;
+
+                        &.invalid{
+                            border-color : #C1354E;
+                        }
                     }
 
                     textarea {
@@ -204,7 +212,7 @@
                         -webkit-border-radius: 4px;
                         width: 150px;
                         height: 35px;
-                        font-family: Proxima Nova;
+                        font-family: 'Muli', sans-serif;
                         font-size: 16px;
                         background-color: transparent;
                         color: rgba(210, 48, 79, 1);
@@ -239,7 +247,7 @@
                 -webkit-border-radius: 4px;
                 width: 150px;
                 height: 35px;
-                font-family: Proxima Nova;
+                font-family: 'Muli', sans-serif;
                 font-size: 16px;
                 background-color: transparent;
                 color: rgba(210, 48, 79, 1);

@@ -22,7 +22,7 @@
                         height : 30px;
                         padding: 5px;
                         color : #616161;
-                        font-family : Proxima Nova;
+                        font-family: 'Muli', sans-serif;
                         font-size : 16px;
 
                         #log-history-disable-user-icon{
@@ -69,13 +69,16 @@
                     float:left;
                     display: inline-block;
 
-                    #invalid-input-tooltip{
-                        width : 200px;
-                        height: 35px;
-                        margin-left : 5px;
+                    .invalid-input-tooltip{
+                        width : 255px;
+                        height: 40px;
+
+                        text{
+                            font-size: 5px;
+                        }
                     }
 
-                    input,#invalid-input-tooltip{
+                    input,.invalid-input-tooltip{
                         display:inline-block;
                         float:left;
                     }
@@ -86,6 +89,10 @@
                         background-color:transparent;
                         border : 2px solid  #beb5b5;
                         color:grey;
+
+                        &.invalid{
+                            border-color : #C1354E;
+                        }
                     }
 
                     input[type="submit"]{
@@ -96,7 +103,7 @@
                         -webkit-border-radius : 4px;
                         width: 150px;
                         height: 35px;
-                        font-family : Proxima Nova;
+                        font-family: 'Muli', sans-serif;
                         font-size : 16px;
                         background-color:transparent;
                         color:rgba(210, 48, 79, 1);

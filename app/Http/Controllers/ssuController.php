@@ -54,8 +54,7 @@ class ssuController extends Controller
     public function createUser(Request $request){
         $validator 	=	Validator::make($request->all(),[
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-            'password_confirmation' =>  'required|min:6|same:password'
+            'password' => 'required|min:6'
         ]);
 
         if($validator->passes()){
@@ -66,12 +65,24 @@ class ssuController extends Controller
             ]);
 
             if($user->save()){
-                return redirect('/dashboard/manage/super-users/users-list');
+                return response()->json(true);
             }
         }else{
-            return redirect('/dashboard/manage/super-users/add-user')
-                ->withErrors($validator->errors()->all())
-                ->with('global', 'Form Validation Errors');
+            return response()->json(false);
         }
+    }
+
+    /**
+     * Check if user exist
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function userExist(Request $request){
+        $email = $request->input('email');
+        $user = User::where('email', '=', $email);
+        if($user->count()){
+            return response()->json(true);
+        }
+        return response()->json(false);
     }
 }

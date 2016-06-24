@@ -95,7 +95,7 @@
                                 </div>
 
                                 <div class="right">
-                                    <input type="email" name="email" placeholder="Email" required>
+                                    <input type="email" name="email" id="email" placeholder="Email">
                                 </div>
                             </div>
 
@@ -105,7 +105,7 @@
                                 </div>
 
                                 <div class="right">
-                                    <input type="password" name="password" placeholder="Password" required>
+                                    <input type="password" name="password" id="password" placeholder="Password">
                                 </div>
                             </div>
 
@@ -115,7 +115,7 @@
                                 </div>
 
                                 <div class="right">
-                                    <input type="password" name="password_confirmation" placeholder="Confirm password" required>
+                                    <input type="password" name="password_confirmation" id="password-confirm" placeholder="Confirm password">
                                 </div>
                             </div>
                             {{csrf_field()}}
@@ -125,7 +125,7 @@
                                 </div>
 
                                 <div class="right">
-                                    <input type="submit" name="submit" value="Create User">
+                                    <input type="submit" name="submit" id="create-su-user" value="Create User">
                                 </div>
                             </div>
 

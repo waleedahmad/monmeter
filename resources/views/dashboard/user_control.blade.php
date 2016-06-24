@@ -140,7 +140,7 @@
                                     </div>
 
                                     <div class="right">
-                                        <input type="text" name="name" placeholder="Name" required>
+                                        <input type="text" name="name" id="name" placeholder="Name">
                                     </div>
                                 </div>
 
@@ -150,7 +150,7 @@
                                     </div>
 
                                     <div class="right">
-                                        <input type="text" name="company" placeholder="Company" required>
+                                        <input type="text" name="company" id="company" placeholder="Company">
                                     </div>
                                 </div>
                             </div>
@@ -162,7 +162,7 @@
                                     </div>
 
                                     <div class="right">
-                                        <input type="text" name="date" id="uc-date" placeholder="Date" required>
+                                        <input type="text" name="date" id="uc-date" placeholder="Date">
                                     </div>
                                 </div>
 
@@ -175,7 +175,7 @@
                                     </div>
 
                                     <div class="right">
-                                        <input type="text" name="card_identifier" placeholder="0x8D 0xFD 0x72 0x65" required>
+                                        <input type="text" name="card_identifier" id="card-identifier" placeholder="0x8D 0xFD 0x72 0x65">
                                     </div>
                                 </div>
                             </div>
@@ -187,7 +187,7 @@
                                     </div>
 
                                     <div class="right">
-                                        <textarea name="enotes"></textarea>
+                                        <textarea name="enotes" id="enotes"></textarea>
                                     </div>
                                 </div>
                             </div>

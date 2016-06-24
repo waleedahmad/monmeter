@@ -100,7 +100,7 @@
                                 </div>
 
                                 <div class="right">
-                                    <input type="text" name="loc_name" placeholder="Name/code" required>
+                                    <input type="text" name="loc_name" id="loc-name" placeholder="Name/code">
                                 </div>
                             </div>
 
@@ -110,7 +110,7 @@
                                 </div>
 
                                 <div class="right">
-                                    <input type="text" name="date" id="loc-date" placeholder="Date" required>
+                                    <input type="text" name="date" id="loc-date" id="loc-date" placeholder="Date">
                                 </div>
                             </div>
                         </div>
@@ -122,7 +122,7 @@
                                 </div>
 
                                 <div class="right">
-                                    <input type="text" name="name" placeholder="Name" required>
+                                    <input type="text" name="name" id="name" placeholder="Name">
                                 </div>
                             </div>
 
@@ -132,7 +132,7 @@
                                 </div>
 
                                 <div class="right">
-                                    <input type="text" name="job_position" placeholder="Job Position" required>
+                                    <input type="text" name="job_position" id="job-position" placeholder="Job Position">
                                 </div>
                             </div>
                         </div>
@@ -144,7 +144,7 @@
                                 </div>
 
                                 <div class="right">
-                                    <input type="email" name="email" placeholder="email" required>
+                                    <input type="email" name="email" id="email" placeholder="email">
                                 </div>
                             </div>
 
@@ -154,7 +154,7 @@
                                 </div>
 
                                 <div class="right">
-                                    <input type="password" name="password" placeholder="password" required> @include('svg.dashboard.tabs.invalid_field_tool_tip')
+                                    <input type="password" name="password" id="password" placeholder="password">
                                 </div>
                             </div>
                         </div>
@@ -166,7 +166,7 @@
                                 </div>
 
                                 <div class="right">
-                                    <input type="text" name="static_ip" placeholder="static ip" required>
+                                    <input type="text" name="static_ip" id="static-ip" placeholder="static ip">
                                 </div>
                             </div>
 
@@ -176,7 +176,7 @@
                                 </div>
 
                                 <div class="right">
-                                    <input type="text" name="mac" placeholder="MAC" required>
+                                    <input type="text" name="mac" placeholder="MAC" id="mac">
                                 </div>
                             </div>
                             {{csrf_field()}}
@@ -185,7 +185,7 @@
                                 </div>
 
                                 <div class="right">
-                                    <input type="submit" name="submit" value="Create">
+                                    <input type="submit" name="submit" id="add-client" value="Create">
                                 </div>
                             </div>
                         </div>
