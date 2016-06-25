@@ -16,13 +16,17 @@ Route::group(['middleware'	=>	'guest'], function(){
 
 Route::group(['middleware'	=>	'auth'], function(){
 
+    Route::get('/', function(){
+        return redirect('/login');
+    });
+
     Route::get('/logout', 'AuthController@logout');
 
     // Admin group
     Route::group(['middleware'  =>  'admin'], function(){
         // Main
         Route::get('/dashboard/main', 'DashboardController@realTime');
-        Route::get('//dashboard/main/{active}', 'DashboardController@createView');
+        Route::get('/dashboard/main/{active}', 'DashboardController@createView');
 
         // User Control
         Route::get('/dashboard/user-control', 'userControlController@userList');
