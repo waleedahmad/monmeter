@@ -39,6 +39,8 @@ Route::group(['middleware'	=>	'auth'], function(){
         Route::get('/dashboard/manage/users', 'suController@locationList');
         Route::get('/dashboard/manage/users/exists', 'suController@userExist');
         Route::post('/dashboard/manage/users/create', 'suController@createLocation');
+        Route::get('/dashboard/manage/users/edit/{id}', 'suController@editLocation');
+        Route::post('/dashboard/manage/users/update', 'suController@updateLocation');
         Route::get('/dashboard/manage/users/{active}', 'suController@createView');
 
     });
@@ -48,6 +50,8 @@ Route::group(['middleware'	=>	'auth'], function(){
         Route::get('/dashboard/manage/super-users', 'ssuController@superUsers');
         Route::get('/dashboard/manage/super-users/exists', 'ssuController@userExist');
         Route::post('/dashboard/manage/super-users/create', 'ssuController@createUser');
+        Route::post('/dashboard/manage/super-users/update', 'ssuController@updateUser');
+        Route::get('/dashboard/manage/super-users/edit-user/{id}', 'ssuController@editUser');
         Route::get('/dashboard/manage/super-users/{active}', 'ssuController@userView');
     });
 });

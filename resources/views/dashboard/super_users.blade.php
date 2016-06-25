@@ -27,9 +27,17 @@
                     <li class="tab-link @if($active_tab === 'location-list') current @endif">Location List</li>
                 </a>
 
+                @if($active_tab != 'edit-location')
                 <a href="/dashboard/manage/users/add-location">
                     <li class="tab-link @if($active_tab === 'add-location') current @endif add-user">@include('svg.dashboard.tabs.add_user_tab_icon') Add Location</li>
                 </a>
+                @endif
+
+                @if($active_tab === 'edit-location')
+                    <a href="/dashboard/manage/users/add-location">
+                        <li class="tab-link @if($active_tab === 'edit-location') current @endif add-user">@include('svg.dashboard.tabs.add_user_tab_icon') Edit Location</li>
+                    </a>
+                @endif
             </ul>
 
             @if($active_tab === 'location-list')
@@ -72,7 +80,7 @@
                                     </td>
 
                                     <td class="edit">
-                                        <a href="">Edit</a>
+                                        <a href="/dashboard/manage/users/edit/{{$location->user_id}}">Edit</a>
                                     </td>
 
                                     <td class="remove">
@@ -193,6 +201,118 @@
                     </form>
                 </div>
             </div>
+            @endif
+
+            @if($active_tab === 'edit-location')
+                {{--Add Location Tab--}}
+                <div class="tab-content @if($active_tab === 'edit-location') current @endif edit-location">
+
+                    {{--Add Location Form--}}
+                    <div class="edit-location-form">
+                        <form action="/dashboard/manage/users/update" method="POST">
+                            <div class="section">
+                                <div class="subsection">
+                                    <div class="left">
+                                        Location
+                                    </div>
+
+                                    <div class="right">
+                                        <input type="text" name="loc_name" id="loc-name" value="{{$location->location}}" placeholder="Name/code">
+                                    </div>
+                                </div>
+
+                                <div class="subsection">
+                                    <div class="left">
+                                        Added to System
+                                    </div>
+
+                                    <div class="right">
+                                        <input type="text" name="date" id="loc-date" id="loc-date" value="{{$location->added}}" placeholder="Date">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="section">
+                                <div class="subsection">
+                                    <div class="left">
+                                        Personal Information
+                                    </div>
+
+                                    <div class="right">
+                                        <input type="text" name="name" id="name" value="{{$location->name}}" placeholder="Name">
+                                    </div>
+                                </div>
+
+                                <div class="subsection">
+                                    <div class="left">
+
+                                    </div>
+
+                                    <div class="right">
+                                        <input type="text" name="job_position" id="job-position" value="{{$location->job_position}}" placeholder="Job Position">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="section">
+                                <div class="subsection">
+                                    <div class="left">
+                                        Login Information
+                                    </div>
+
+                                    <div class="right">
+                                        <input type="email" name="email" id="email" value="{{$location->email}}" data-old-email="{{$location->email}}" placeholder="email">
+                                    </div>
+                                </div>
+
+                                <div class="subsection">
+                                    <div class="left">
+
+                                    </div>
+
+                                    <div class="right">
+                                        <input type="password" name="password" id="password" placeholder="password">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="section">
+                                <div class="subsection">
+                                    <div class="left">
+                                        Setup Information
+                                    </div>
+
+                                    <div class="right">
+                                        <input type="text" name="static_ip" id="static-ip" value="{{$location->static_ip}}" placeholder="static ip">
+                                    </div>
+                                </div>
+
+                                <div class="subsection">
+                                    <div class="left">
+
+                                    </div>
+
+                                    <div class="right">
+                                        <input type="text" name="mac" placeholder="MAC" value="{{$location->mac_address}}" id="mac">
+                                    </div>
+                                </div>
+                                {{csrf_field()}}
+
+                                <input type="hidden" id="user-id" value="{{$location->user_id}}">
+
+                                <div class="subsection">
+                                    <div class="left">
+                                    </div>
+
+                                    <div class="right">
+                                        <input type="submit" name="submit" id="add-client" value="Update">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
             @endif
         </div>
     </div>

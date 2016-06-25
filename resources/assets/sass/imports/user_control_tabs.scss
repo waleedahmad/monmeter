@@ -58,8 +58,9 @@
 
 // add-users tab styles
 
-.add-user {
-    .add-user-form {
+.add-user, .edit-user{
+    .add-user-form,
+    .edit-user-form{
 
         .messages{
             clear:both;
@@ -120,13 +121,25 @@
                     float: left;
                     display: inline-block;
 
-                    .invalid-input-tooltip {
-                        width: 200px;
-                        height: 35px;
-                        margin-left: 5px;
+                    .invalid-input-tooltip{
+
+
+                        width : 150px;
+                        height: 40px;
+                        margin-left : 5px;
 
                         text{
-                            font-size: 6px;
+                            font-size: 14px;
+                        }
+
+                        &.password{
+                            width : 200px;
+                            height: 40px;
+                            margin-left : 5px;
+
+                            text{
+                                font-size: 14px;
+                            }
                         }
                     }
 

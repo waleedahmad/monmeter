@@ -34,7 +34,7 @@
 
                 @if($active_tab === 'edit-user')
                 <a href="/dashboard/user-control/add-user">
-                    <li class="tab-link add-user @if($active_tab === 'edit-user') current @endif">@include('svg.dashboard.tabs.add_user_tab_icon') Add User</li>
+                    <li class="tab-link add-user @if($active_tab === 'edit-user') current @endif">@include('svg.dashboard.tabs.add_user_tab_icon') Edit User</li>
                 </a>
                 @endif
 
@@ -187,7 +187,7 @@
                                     </div>
 
                                     <div class="right">
-                                        <textarea name="enotes" id="enotes"></textarea>
+                                        <textarea name="enote" id="enotes"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -270,9 +270,9 @@
 
             @if($active_tab === 'edit-user')
                 {{--Add User Tab--}}
-                <div class="tab-content @if($active_tab === 'edit-user') current @endif add-user">
+                <div class="tab-content @if($active_tab === 'edit-user') current @endif edit-user">
                     {{--Add Location Form--}}
-                    <div class="add-user-form">
+                    <div class="edit-user-form">
                         <form action="/dashboard/user-control/update" method="POST">
 
                             <div class="messages">
@@ -322,7 +322,7 @@
                                     </div>
 
                                     <div class="right">
-                                        <input type="text" name="name" placeholder="Name" value="{{$client->name}}" required>
+                                        <input type="text" name="name" id="name" placeholder="Name" value="{{$client->name}}" >
                                     </div>
                                 </div>
 
@@ -332,7 +332,7 @@
                                     </div>
 
                                     <div class="right">
-                                        <input type="text" name="company" placeholder="Company" value="{{$client->company}}" required>
+                                        <input type="text" name="company" id="company" placeholder="Company" value="{{$client->company}}">
                                     </div>
                                 </div>
                             </div>
@@ -344,7 +344,7 @@
                                     </div>
 
                                     <div class="right">
-                                        <input type="text" name="date" id="uc-date" placeholder="Date"  value="{{$client->added}}" required>
+                                        <input type="text" name="date" id="uc-date" placeholder="Date"  value="{{$client->added}}">
                                     </div>
                                 </div>
 
@@ -357,7 +357,7 @@
                                     </div>
 
                                     <div class="right">
-                                        <input type="text" name="card_identifier" placeholder="0x8D 0xFD 0x72 0x65" value="{{$client->card_tag}}" required>
+                                        <input type="text" name="card_identifier" id="card-identifier" placeholder="0x8D 0xFD 0x72 0x65" value="{{$client->card_tag}}" data-old-tag="{{$client->card_tag}}">
                                     </div>
                                 </div>
                             </div>
@@ -369,13 +369,13 @@
                                     </div>
 
                                     <div class="right">
-                                        <textarea name="enotes">{{$client->enote}}</textarea>
+                                        <textarea name="enote" id="enotes">{{$client->enote}}</textarea>
                                     </div>
                                 </div>
                             </div>
 
-                            <input type="hidden" name="user-access" id="user-access" value="@if($client->access){{'enabled'}}@else{{'disabled'}}@endif">
-                            <input type="hidden" name="client-id" id="client-id" value="{{$client->id}}">
+                            <input type="hidden" name="user_access" id="user-access" value="@if($client->access){{'enabled'}}@else{{'disabled'}}@endif">
+                            <input type="hidden" name="client_id" id="client-id" value="{{$client->id}}">
                             {{csrf_field()}}
 
                             <div class="submit">

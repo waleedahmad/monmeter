@@ -14,7 +14,7 @@ class CreateClientsTable extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('admin');
+            $table->integer('admin_id')->unsigned();
             $table->boolean('access');
             $table->string('name');
             $table->string('company');
@@ -23,7 +23,7 @@ class CreateClientsTable extends Migration
             $table->text('enote');
             $table->timestamps();
 
-            $table->foreign('admin')->references('email')->on('users');
+            $table->foreign('admin_id')->references('id')->on('users');
         });
     }
 

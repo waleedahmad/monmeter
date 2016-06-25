@@ -47,6 +47,43 @@ class ssuController extends Controller
     }
 
     /**
+     * Edit SSU user view
+     * @param $id
+     * @return mixed
+     */
+    public function editUser($id){
+        $user = User::where('id','=', $id)
+                    ->where('role','=','super')->first();
+
+        return view('dashboard.manage_super_users')
+                    ->with('active_tab','edit-user')
+                    ->with('active_sidebar', 'super-super-users')
+                    ->with('su_user', $user);
+    }
+
+    /**
+     * Update SSU user
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updateUser(Request $request){
+        $email = $request->input('email');
+        $old_email = $request->input('old_email');
+        $password = $request->input('password');
+
+        $update = User::where('email','=',$old_email)->update([
+            'email' =>  $email,
+            'password'  =>  bcrypt($password)
+        ]);
+
+        if($update){
+            return response()->json(true);
+        }
+
+        return response()->json(false);
+    }
+
+    /**
      * Create SSU User
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector

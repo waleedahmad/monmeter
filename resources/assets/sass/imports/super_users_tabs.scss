@@ -52,8 +52,10 @@
     }
 }
 
-.add-location{
-    .location-form{
+.add-location,
+.edit-location{
+    .location-form,
+    .edit-location-form{
         margin-left: 20px;
         width : 850px;
 
@@ -74,12 +76,24 @@
                     display: inline-block;
 
                     .invalid-input-tooltip{
-                        width : 200px;
-                        height: 35px;
+
+
+                        width : 150px;
+                        height: 40px;
                         margin-left : 5px;
 
                         text{
-                            font-size: 6px;
+                            font-size: 14px;
+                        }
+
+                        &.password{
+                            width : 200px;
+                            height: 40px;
+                            margin-left : 5px;
+
+                            text{
+                                font-size: 14px;
+                            }
                         }
                     }
 

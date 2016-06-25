@@ -16,7 +16,7 @@ class userControlController extends Controller
      * @return mixed
      */
     public function userList(){
-        $clients = Client::where('admin','=',Auth::user()->email)->get();
+        $clients = Client::where('admin_id','=',Auth::user()->id)->get();
         return view('dashboard.user_control')
             ->with('active_tab','user-list')
             ->with('active_sidebar', 'user-control')
@@ -32,7 +32,7 @@ class userControlController extends Controller
         if($active === 'user-list' || $active === 'add-user' || $active === 'disabled-users'){
 
             if($active === 'user-list'){
-                $clients = Client::where('admin','=',Auth::user()->email)->get();
+                $clients = Client::where('admin_id','=',Auth::user()->id)->get();
                 return view('dashboard.user_control')
                     ->with('active_tab',$active)
                     ->with('active_sidebar', 'user-control')
@@ -40,7 +40,7 @@ class userControlController extends Controller
             }
             
             if($active === 'disabled-users'){
-                $clients = Client::where('admin','=',Auth::user()->email)
+                $clients = Client::where('admin_id','=',Auth::user()->id)
                                 ->where('access','=',0)->get();
                 return view('dashboard.user_control')
                     ->with('active_tab',$active)
@@ -68,11 +68,11 @@ class userControlController extends Controller
             'company'   =>  'required',
             'date'  =>  'required|date',
             'card_identifier'   =>  'required',
-            'user_access'   =>  'required',
+            'access'   =>  'required',
         ]);
 
         if($validator->passes()){
-            $access = ($request->input('user-access') === 'enabled') ? true : false;
+            $access = ($request->input('access') === 'enabled') ? true : false;
             $client = new Client([
                 'name'  =>  $request->input('name'),
                 'company'   =>  $request->input('company'),
@@ -80,7 +80,7 @@ class userControlController extends Controller
                 'card_tag'  =>  $request->input('card_identifier'),
                 'enote' =>  $request->input('enote'),
                 'access'    =>  $access,
-                'admin' =>  Auth::user()->email
+                'admin_id' =>  Auth::user()->id
             ]);
 
             if($client->save()){
@@ -91,6 +91,11 @@ class userControlController extends Controller
         }
     }
 
+    /**
+     * Edit Client
+     * @param $id
+     * @return mixed
+     */
     public function editUser($id){
         $client = Client::where('id','=',$id)->first();
         return view('dashboard.user_control')
@@ -99,6 +104,11 @@ class userControlController extends Controller
             ->with('client', $client);
     }
 
+    /**
+     * Update Client
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function updateAccess(Request $request){
         $client_id = $request->input('client');
         $access = $request->input('access');
@@ -112,18 +122,23 @@ class userControlController extends Controller
         }
     }
 
+    /**
+     * Update User
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function updateUser(Request $request){
         $validator = Validator($request->all(), [
             'name'  =>  'required',
             'company'   =>  'required',
             'date'  =>  'required|date',
             'card_identifier'   =>  'required',
-            'user-access'   =>  'required',
+            'access'   =>  'required',
         ]);
 
         if($validator->passes()){
-            $access = ($request->input('user-access') === 'enabled') ? true : false;
-            $client = Client::where('id','=',$request->input('client-id'));
+            $access = ($request->input('user_access') === 'enabled') ? true : false;
+            $client = Client::where('id','=',$request->input('client_id'));
             if($client->update([
                 'name'  =>  $request->input('name'),
                 'company'   =>  $request->input('company'),
@@ -131,16 +146,20 @@ class userControlController extends Controller
                 'card_tag'  =>  $request->input('card_identifier'),
                 'enote' =>  $request->input('enote'),
                 'access'    =>  $access,
-                'admin' =>  Auth::user()->email
+                'admin_id' =>  Auth::user()->id
             ])){
-                return redirect('/dashboard/user-control/user-list');
+                return response()->json(true);
             }
-        }else{
-            return redirect('/dashboard/user-control/add-user')
-                ->withErrors($validator);
         }
+
+        return response()->json(false);
     }
 
+    /**
+     * Check if user exists
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function userExists(Request $request){
         $client = Client::where('card_tag','=',$request->input('tag'));
 

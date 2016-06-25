@@ -27,11 +27,17 @@
                     <li class="tab-link @if($active_tab === 'users-list') current @endif">Super user</li>
                 </a>
 
+                @if($active_tab != 'edit-user')
                 <a href="/dashboard/manage/super-users/add-user">
                     <li class="tab-link @if($active_tab === 'add-user') current @endif add-user">@include('svg.dashboard.tabs.add_user_tab_icon') Add super user</li>
                 </a>
+                @endif
 
-
+                @if($active_tab === 'edit-user')
+                    <a href="/dashboard/manage/super-users/edit-user/{{$su_user->id}}">
+                        <li class="tab-link @if($active_tab === 'edit-user') current @endif add-user">@include('svg.dashboard.tabs.add_user_tab_icon') Edit super user</li>
+                    </a>
+                @endif
 
             </ul>
 
@@ -49,9 +55,8 @@
                             </td>
 
                             <td>
-                                Status
+                                Edit
                             </td>
-
 
                             <td>
                                 Remove
@@ -66,12 +71,14 @@
                                     {{$ssu_user->email}}
                                 </td>
 
-                                <td class="view">
-                                    <a href="">Enabled</a>
+                                <td class="edit-column">
+                                    <a href="/dashboard/manage/super-users/edit-user/{{$ssu_user->id}}">
+                                        @include('svg.dashboard.tabs.user_edit_icon')
+                                    </a>
                                 </td>
 
-                                <td class="remove">
-                                    <a href="">Remove</a>
+                                <td class="remove-column">
+                                    <a href="#" data-id="{{$ssu_user->id}}">Remove</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -149,6 +156,74 @@
                     </form>
                 </div>
             </div>
+            @endif
+
+            @if($active_tab === 'edit-user')
+                {{--Add Location Tab--}}
+                <div class="tab-content @if($active_tab === 'edit-user') current @endif edit-user">
+
+                    {{--Add Location Form--}}
+                    <div class="edit-user-form">
+                        <form action="/dashboard/manage/super-users/update" method="POST">
+                            <div class="section">
+                                <div class="subsection">
+                                    <div class="left">
+                                        Email
+                                    </div>
+
+                                    <div class="right">
+                                        <input type="email" name="email" id="email" value="{{$su_user->email}}" data-old-email="{{$su_user->email}}" placeholder="Email">
+                                    </div>
+                                </div>
+
+                                <div class="subsection">
+                                    <div class="left">
+                                        Password
+                                    </div>
+
+                                    <div class="right">
+                                        <input type="password" name="password" id="password" placeholder="Password">
+                                    </div>
+                                </div>
+
+                                <div class="subsection">
+                                    <div class="left">
+                                        Confirm Password
+                                    </div>
+
+                                    <div class="right">
+                                        <input type="password" name="password_confirmation" id="password-confirm" placeholder="Confirm password">
+                                    </div>
+                                </div>
+                                {{csrf_field()}}
+
+                                <div class="subsection">
+                                    <div class="left">
+                                    </div>
+
+                                    <div class="right">
+                                        <input type="submit" name="submit" id="create-su-user" value="Update User">
+                                    </div>
+                                </div>
+
+                                <div class="subsection">
+                                    <div class="left">
+                                    </div>
+
+                                    <div class="right">
+                                        <ul>
+                                            @foreach ($errors->all() as $message)
+                                                <li>
+                                                    {{$message}}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             @endif
         </div>
     </div>

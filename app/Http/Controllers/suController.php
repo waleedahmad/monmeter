@@ -55,6 +55,50 @@ class suController extends Controller
     }
 
     /**
+     * Edit Location
+     * @param $id
+     * @return mixed
+     */
+    public function editLocation($id){
+        $location = DB::table('users')
+                        ->where('users.id', '=', $id)
+                        ->join('user_details', 'users.id', '=', 'user_details.user_id')
+                        ->first();
+        return view('dashboard.super_users')
+            ->with('active_tab','edit-location')
+            ->with('active_sidebar', 'super-users')
+            ->with('location', $location);
+    }
+
+    /**
+     * Update Location
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updateLocation(Request $request){
+
+        $update = DB::table('users')
+                    ->where('users.id', '=', $request->input('user_id'))
+                    ->join('user_details', 'users.id', '=', 'user_details.user_id')
+                    ->update([
+                        'users.email' =>  $request->input('email'),
+                        'users.password'  =>  bcrypt($request->input('password')),
+                        'user_details.location'  =>  $request->input('loc_name'),
+                        'user_details.added' =>  $request->input('date'),
+                        'user_details.name'  =>  $request->input('name'),
+                        'user_details.job_position'  =>  $request->input('job_position'),
+                        'user_details.static_ip' =>  $request->input('static_ip'),
+                        'user_details.mac_address'   =>  $request->input('mac')
+                    ]);
+
+        if($update){
+            return response()->json(true);
+        }
+
+        return response()->json(false);
+    }
+
+    /**
      * Create a new Client
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector

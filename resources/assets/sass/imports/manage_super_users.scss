@@ -31,18 +31,28 @@
                             margin-left : 10px;
                         }
 
-                        #user-edit-icon{
+                        .user-edit-icon{
                             width : 18px;
                             height: 18px;
+                            margin-left : 40px;
+                            cursor: pointer;
                         }
 
-                        &.view, &.edit, &.remove{
+                        .user-edit-icon{
+                            &:hover{
+                                g{
+                                    path{
+                                        fill : #D2304F;
+                                    }
+                                }
+                            }
+                        }
+
+                        &.edit-column,&.remove-column{
+                            width : 100px;
+
                             a{
                                 color:grey;
-
-                                &:hover{
-                                    color : #C1354E;
-                                }
                             }
                         }
                     }
@@ -52,8 +62,9 @@
     }
 }
 
-.add-user{
-    .add-user-form{
+.add-user, .edit-user{
+    .add-user-form,
+    .edit-user-form{
         .section{
             height : 500px;
             overflow:hidden;
@@ -70,11 +81,24 @@
                     display: inline-block;
 
                     .invalid-input-tooltip{
-                        width : 255px;
+
+
+                        width : 150px;
                         height: 40px;
+                        margin-left : 5px;
 
                         text{
-                            font-size: 5px;
+                            font-size: 14px;
+                        }
+
+                        &.password{
+                            width : 200px;
+                            height: 40px;
+                            margin-left : 5px;
+
+                            text{
+                                font-size: 14px;
+                            }
                         }
                     }
 
