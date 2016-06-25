@@ -177,7 +177,7 @@ class Admin{
             success : function(user){
                 if(action === 'new'){
                     if(user){
-                        _this.email.after(_this.errorDOM('Email already exist')).addClass('invalid');
+                        _this.email.after(_this.errorDOM('Email already exist', 'password')).addClass('invalid');
                     }else{
                         _this.createAdmin(_this);
                     }
@@ -185,7 +185,7 @@ class Admin{
 
                 if(action === 'edit'){
                     if(user){
-                        _this.email.after(_this.errorDOM('Email already exist')).addClass('invalid');
+                        _this.email.after(_this.errorDOM('Email already exist', 'password')).addClass('invalid');
                     }else{
                         _this.updateAdmin(_this);
                     }
@@ -207,7 +207,7 @@ class Admin{
             if(_this.getPassword().length > 6){
                 _this.validateEmail(_this.getEmail(), _this, 'new');
             }else{
-                _this.password.after(_this.errorDOM('6 characters minimum', 'invalid')).addClass('invalid');
+                _this.password.after(_this.errorDOM('6 characters minimum', 'password')).addClass('invalid');
             }
         }else{
 

@@ -105,7 +105,7 @@ class ssuUser{
             success : function(user){
                 if(action === 'new'){
                     if(user){
-                        _this.email.after(_this.errorDOM('Email already exist')).addClass('invalid');
+                        _this.email.after(_this.errorDOM('Email already exist','password')).addClass('invalid');
                     }else{
                         _this.createSuperUser(_this);
                     }
@@ -113,7 +113,7 @@ class ssuUser{
                 
                 if(action === 'edit'){
                     if(user){
-                        _this.email.after(_this.errorDOM('Email already exist')).addClass('invalid');
+                        _this.email.after(_this.errorDOM('Email already exist','password')).addClass('invalid');
                     }else{
                         _this.updateSuperUser(_this);
                     }
