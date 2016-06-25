@@ -18,5 +18,9 @@
 </body>
 <script type="text/javascript" src="/assets/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="/assets/bower_components/jquery-ui/jquery-ui.min.js"></script>
-<script type="text/javascript" src="/assets/js/app.js"></script>
+@if(env('APP_ENV') === "local")
+    <script type="text/javascript" src="/assets/js/app.js"></script>
+@else
+    <script type="text/javascript" src="/assets/js/app.min.js"></script>
+@endif
 </html>
