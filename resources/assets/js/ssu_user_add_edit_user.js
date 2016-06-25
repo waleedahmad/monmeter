@@ -12,6 +12,139 @@ class ssuUser{
             $(this).siblings(".invalid-input-tooltip").remove();
             $(this).removeClass('invalid');
         });
+
+        $(".remove-suser").on('click', {context : this}, this.confirmRemove);
+    }
+
+    confirmRemove(e){
+        e.preventDefault();
+        var _this = e.data.context,
+            id = $(this).attr('data-id');
+        console.log(id);
+
+        var $overlay = `<div class="overlays">
+                        <div class="rm-loc-overlay">
+                            <span class="close">
+                                <?xml version="1.0" encoding="utf-8"?>
+                                <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+                                <svg version="1.1" id="close-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                     viewBox="0 0 9.1 9.1" enable-background="new 0 0 9.1 9.1" xml:space="preserve">
+                                <g>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M9.1,4.6c0,2.5-2.1,4.6-4.6,4.6C2,9.1,0,7,0,4.5C0,2,2.1,0,4.6,0
+                                        C7.1,0,9.1,2.1,9.1,4.6z M0.4,4.6c0,2.3,1.9,4.2,4.2,4.2c2.3,0,4.2-1.9,4.2-4.2c0-2.3-1.9-4.2-4.2-4.2C2.3,0.4,0.4,2.3,0.4,4.6z"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M4.6,4.3C4.7,4.1,4.8,4,5,3.8c0.3-0.3,0.6-0.6,0.9-0.9
+                                        c0,0,0.1-0.1,0.1-0.1c0.1-0.1,0.2,0,0.3,0c0.1,0.1,0.1,0.2,0,0.2c0,0,0,0.1-0.1,0.1C5.8,3.6,5.3,4.1,4.9,4.5c0,0-0.1,0-0.1,0.1
+                                        c0,0,0.1,0.1,0.1,0.1c0.4,0.4,0.8,0.8,1.3,1.3c0,0,0.1,0.1,0.1,0.1c0.1,0.1,0,0.2,0,0.2C6.2,6.3,6.1,6.3,6,6.3c0,0-0.1,0-0.1-0.1
+                                        C5.5,5.8,5.1,5.3,4.6,4.9c0,0,0,0-0.1-0.1c0,0-0.1,0-0.1,0.1C4.1,5.3,3.6,5.8,3.2,6.2c0,0,0,0-0.1,0.1C3.1,6.3,3,6.3,2.9,6.2
+                                        C2.8,6.2,2.8,6,2.9,5.9c0.4-0.4,0.9-0.9,1.3-1.3c0,0,0,0,0.1-0.1c0,0,0-0.1-0.1-0.1C3.8,4.1,3.4,3.6,2.9,3.2c0,0,0,0-0.1-0.1
+                                        c-0.1-0.1,0-0.2,0-0.2c0.1-0.1,0.2-0.1,0.2,0c0,0,0.1,0.1,0.1,0.1C3.6,3.4,4.1,3.8,4.6,4.3C4.5,4.2,4.5,4.2,4.6,4.3z"/>
+                                </g>
+                                </svg>
+                            </span>
+                
+                            <div class="icon">
+                                <?xml version="1.0" encoding="utf-8"?>
+                                <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+                                <svg version="1.1" id="header-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                     viewBox="0 0 25.9 25.9" enable-background="new 0 0 25.9 25.9" xml:space="preserve">
+                                    <g>
+                                        <g>
+                                            <path fill="#FFFFFF" d="M10.3,17.7c0-0.2,0.1-0.5,0.2-0.9l1.3-4.9c0-0.1,0-0.1,0-0.2c0-0.1,0-0.1,0-0.2c0-0.3-0.1-0.5-0.3-0.5
+                                                c-0.2-0.1-0.5-0.1-1-0.1v-0.6c0.4,0,1-0.1,1.8-0.2c0.8-0.1,1.3-0.2,1.6-0.2l0.9-0.2L13.3,16c-0.1,0.5-0.2,0.9-0.3,1.1
+                                                c-0.1,0.5-0.2,0.9-0.2,1c0,0.2,0,0.3,0.1,0.3c0.1,0,0.1,0.1,0.2,0.1c0.2,0,0.5-0.2,0.8-0.6c0.3-0.4,0.6-0.8,0.9-1.2l0.5,0.3
+                                                c-0.7,1-1.3,1.7-1.6,2.1c-0.6,0.6-1.3,0.9-2,0.9c-0.4,0-0.8-0.1-1.1-0.4c-0.3-0.2-0.5-0.6-0.5-1.1C10.1,18.3,10.2,18.1,10.3,17.7z
+                                                 M15.4,5.3c0.3,0.3,0.4,0.6,0.4,1c0,0.4-0.1,0.7-0.4,1c-0.3,0.3-0.6,0.4-1,0.4c-0.4,0-0.7-0.1-1-0.4c-0.3-0.3-0.4-0.6-0.4-1
+                                                c0-0.4,0.1-0.7,0.4-1c0.3-0.3,0.6-0.4,1-0.4C14.7,4.9,15.1,5.1,15.4,5.3z"/>
+                                        </g>
+                                        <g>
+                                            <path fill="#FFFFFF" d="M13,0C5.8,0,0,5.8,0,13c0,7.2,5.8,13,13,13s13-5.8,13-13C25.9,5.8,20.1,0,13,0z M13,24
+                                                C6.9,24,1.9,19.1,1.9,13c0-6.1,5-11.1,11.1-11.1S24,6.9,24,13C24,19.1,19.1,24,13,24z"/>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>
+                
+                            <div class="heading">
+                                <p class="header">Remove User confirmation</p>
+                                <p class="description">
+                                   Once removed, this user will have no access to Super User Panel
+                                </>
+                            </div>
+                
+                            <div class="confirm-box">
+                                <div class="confirm-dialogue">
+                                    <div class="confirm-icon" data-status="false">
+                                    <?xml version="1.0" encoding="utf-8"?>
+                                    <!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                                        <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+                                        <svg version="1.1" id="confirm-checkbox" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                             viewBox="0 0 25.9 25.9" enable-background="new 0 0 25.9 25.9" xml:space="preserve">
+                                        <g>
+                                            <path fill="#C1354E" d="M13.6,1.9C7.3,1.9,2.2,7.1,2.2,13.4s5.1,11.4,11.4,11.4s11.4-5.1,11.4-11.4S19.9,1.9,13.6,1.9z M13.6,21.5
+                                                c-4.5,0-8.1-3.6-8.1-8.1c0-4.5,3.6-8.1,8.1-8.1c4.5,0,8.1,3.6,8.1,8.1C21.7,17.9,18.1,21.5,13.6,21.5z"/>
+                                            <path fill="#C1354E" d="M13.6,18.5c-2.8,0-5.1-2.3-5.1-5.1s2.3-5.1,5.1-5.1c2.8,0,5.1,2.3,5.1,5.1S16.4,18.5,13.6,18.5z"/>
+                                            <path fill="#C1354E" d="M13.6,8.3c-2.8,0-5.1,2.3-5.1,5.1s2.3,5.1,5.1,5.1c2.8,0,5.1-2.3,5.1-5.1S16.4,8.3,13.6,8.3z"/>
+                                        </g>
+                                        </svg>
+                
+                                    </div>
+                
+                                    <div class="text">
+                                        I have read and understand the above information
+                                    </div>
+                                </div>
+                
+                                <button class="delLocBtn" data-id="${id}">
+                                    Remove >
+                                </button>
+                            </div>
+                        </div>
+                    </div>`;
+
+        $(".wrapper").append($overlay);
+        $(".rm-loc-overlay #close-icon").on('click', function(){
+            $(".overlays").remove();
+        });
+
+        $(".rm-loc-overlay .confirm-icon").on('click', function(){
+            var status = $(this).attr('data-status');
+            if(status === "true"){
+                $(this).removeClass('ticked');
+                $(this).attr('data-status', false);
+
+                $(".rm-loc-overlay .delLocBtn").off('click').css({
+                    'cursor' : 'not-allowed'
+                });;
+
+            }
+
+            if(status === "false"){
+                $(this).addClass('ticked');
+                $(this).attr('data-status', true);
+
+
+                $(".rm-loc-overlay .delLocBtn").on('click', function(){
+                    var id = $(this).attr('data-id');
+
+                    $.ajax({
+                        url : '/dashboard/manage/super-users/remove',
+                        type : 'POST',
+                        data : {
+                            id : id,
+                            _token : $("meta[name=_token]").attr('content')
+                        },
+                        success :  function(res){
+                            if(res){
+                                $(".remove-suser[data-id="+id+"]").parents('tr').slideUp().remove();
+                                $(".overlays").remove();
+                            }
+                        }
+                    })
+                }).css({
+                    'cursor' : 'pointer'
+                });
+            }
+        });
     }
 
     /**
@@ -263,6 +396,8 @@ class ssuUser{
                     <text transform="matrix(1 0 0 1 60.6667 24.3333)" fill="#FFFFFF" font-size="14">${message}</text>
                     </svg>`
         }
+
+        console.log()
     }
 }
 

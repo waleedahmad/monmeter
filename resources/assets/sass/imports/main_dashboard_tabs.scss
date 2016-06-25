@@ -7,26 +7,33 @@
 
         .details, .raw-data{
             display: inline-block;
-            width:50%;
             height: 100%;
             float:left;
         }
 
         .details{
-
+            width:60%;
             .left,.right{
                 display: inline-block;
                 float:left;
                 height: 100%;
-                width : 50%;
 
                 p{
                     margin-left: 50px;
                 }
             }
+
+            .left{
+                width : 45%;
+            }
+
+            .right {
+                width : 55%;
+            }
         }
 
         .raw-data{
+            width:40%;
             .get-data{
                 border-radius : 3px;
                 -moz-border-radius : 3px;
@@ -50,7 +57,7 @@
     .reading{
         border-top: 2px solid #bababa;
         border-bottom: 2px solid #bababa;
-        margin-top: 50px;
+        margin-top: 10px;
         position: relative;
         margin-left: 50px;
         width: 810px;
@@ -70,6 +77,35 @@
 }
 
 .log-history{
+
+    .time-line,.export{
+        display: inline-block;
+    }
+
+    .export{
+        float:right;
+        margin-top: 25px;
+        margin-right: 50px;
+        .exportBtn{
+            width : 200px;
+            height : 45px;
+            font-family: 'Muli', sans-serif;
+            background : rgba(238, 224, 223, 1);
+            border: 1px solid rgba(193, 53, 78, 1);;
+            border-radius : 3px;
+            -moz-border-radius : 3px;
+            -webkit-border-radius : 3px;
+            padding : 13px;
+            color: rgba(193, 53, 78, 1);;
+            font-weight :bold;
+            cursor: pointer;
+            &:hover{
+                background : rgba(193, 53, 78, 1);
+                color:white;
+            }
+        }
+    }
+
     .time-line{
         width : 500px;
         height: 50px;
@@ -110,6 +146,7 @@
         margin-left: 20px;
         margin-top: 20px;
         table{
+            margin-bottom : 50px;
             width: 830px;
             background-color:#beb5b5;
 
@@ -135,7 +172,20 @@
                         #log-history-disable-user-icon{
                             width : 18px;
                             height: 18px;
-                            margin-left : 10px;
+                            margin-left : 23px;
+                        }
+
+                        &.status{
+                            width : 70px;
+                        }
+
+                        &.litres{
+                            width : 90px;
+                        }
+
+                        &.date-time{
+                            width : 200px;
+                            text-align: center;
                         }
                     }
                 }

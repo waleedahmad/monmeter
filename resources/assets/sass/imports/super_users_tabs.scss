@@ -3,6 +3,7 @@
         margin-left: 20px;
         margin-top: 20px;
         table{
+            margin-bottom : 50px;
             width: 830px;
             background-color:#beb5b5;
 
@@ -31,12 +32,13 @@
                             margin-left : 10px;
                         }
 
-                        #user-edit-icon{
-                            width : 18px;
-                            height: 18px;
+                        &:first-child{
+                            width : 500px;
                         }
 
                         &.view, &.edit, &.remove{
+                            width : 120px;
+                            text-align:center;
                             a{
                                 color:grey;
 
@@ -60,6 +62,7 @@
         width : 850px;
 
         .section{
+            clear:both;
             height : auto;
             overflow:hidden;
             padding-top: 30px;
@@ -76,8 +79,6 @@
                     display: inline-block;
 
                     .invalid-input-tooltip{
-
-
                         width : 150px;
                         height: 40px;
                         margin-left : 5px;
@@ -113,6 +114,11 @@
                         &.invalid{
                             border-color : #C1354E;
                         }
+
+                        &:focus{
+                            outline: none;
+                            border-color: rgba(193, 53, 78, 1);
+                        }
                     }
 
                     input[type="submit"]{
@@ -140,7 +146,6 @@
                 }
 
                 .left{
-                    font-weight: bold;
                     color:#616161;
                     width : 250px;
                 }
@@ -157,6 +162,49 @@
 
         .section:last-child{
             height: 150px;
+        }
+    }
+}
+
+.edit-location-form{
+    .messages{
+        clear:both;
+        width : 840px;
+        .message{
+            width : 100%;
+            height : 50px;
+            background : rgba(193, 53, 78, 1);
+            margin-top : 10px;
+            color:white;
+            padding-top: 20px;
+            padding-left : 20px;
+
+            &.hide{
+                display: none;
+
+            }
+
+
+            .icon,.text{
+                height : 50px;
+                display: block;
+                float:left;
+            }
+
+            .icon{
+                width : 50px;
+            }
+
+            .text{
+                padding-top : 5px;
+                width : 500px;
+            }
+
+            #edit-mode-icon,#disabled-user-message-icon{
+                width : 30px;
+                height : 30px;
+            }
+
         }
     }
 }

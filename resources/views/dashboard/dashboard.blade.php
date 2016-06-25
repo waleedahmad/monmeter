@@ -151,6 +151,12 @@
                     </ul>
                 </div>
 
+                <div class="export">
+                    <button class="exportBtn">
+                        Export data to CSV >
+                    </button>
+                </div>
+
                 {{--Log Historu Table Data--}}
                 <div class="data">
                     <table>
@@ -188,15 +194,15 @@
                                     Star Fuels
                                 </td>
 
-                                <td>
-                                    21 Jun 2016 | 10:21:34
+                                <td class="date-time">
+                                    21-Jun-2016 | 10:21:34
                                 </td>
 
-                                <td>
+                                <td class="litres">
                                     10,784.4
                                 </td>
 
-                                <td>
+                                <td class="status">
 
                                 </td>
                             </tr>
@@ -210,15 +216,15 @@
                                     Star Fuels
                                 </td>
 
-                                <td>
-                                    21 Jun 2016 | 10:21:34
+                                <td class="date-time">
+                                    21-Jun-2016 | 10:21:34
                                 </td>
 
-                                <td>
+                                <td class="litres">
                                     10,784.4
                                 </td>
 
-                                <td>
+                                <td class="status">
                                     @include('svg.dashboard.tabs.log_history_status_hand_icon')
                                 </td>
                             </tr>
@@ -232,15 +238,15 @@
                                     Star Fuels
                                 </td>
 
-                                <td>
-                                    21 Jun 2016 | 10:21:34
+                                <td class="date-time">
+                                    21-Jun-2016 | 10:21:34
                                 </td>
 
-                                <td>
+                                <td class="litres">
                                     10,784.4
                                 </td>
 
-                                <td>
+                                <td class="status">
 
                                 </td>
                             </tr>
@@ -254,61 +260,21 @@
                                     Star Fuels
                                 </td>
 
-                                <td>
-                                    21 Jun 2016 | 10:21:34
+                                <td class="date-time">
+                                    21-Jun-2016 | 10:21:34
                                 </td>
 
-                                <td>
+                                <td class="litres">
                                     10,784.4
                                 </td>
 
-                                <td>
+                                <td class="status">
 
                                 </td>
                             </tr>
 
-                            <tr>
-                                <td>
-                                    Nick Chan
-                                </td>
 
-                                <td>
-                                    Star Fuels
-                                </td>
 
-                                <td>
-                                    21 Jun 2016 | 10:21:34
-                                </td>
-
-                                <td>
-                                    10,784.4
-                                </td>
-
-                                <td>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Nick Chan
-                                </td>
-
-                                <td>
-                                    Star Fuels
-                                </td>
-
-                                <td>
-                                    21 Jun 2016 | 10:21:34
-                                </td>
-
-                                <td>
-                                    10,784.4
-                                </td>
-
-                                <td>
-
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>

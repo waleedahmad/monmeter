@@ -6,6 +6,7 @@
         margin-top: 20px;
 
         table{
+            margin-bottom : 50px;
             width: 830px;
             background-color:#beb5b5;
 
@@ -157,6 +158,11 @@
                         &.invalid{
                             border-color : #C1354E;
                         }
+
+                        &:focus{
+                            outline: none;
+                            border-color: rgba(193, 53, 78, 1);
+                        }
                     }
 
                     textarea {
@@ -167,12 +173,16 @@
                         border: 2px solid #beb5b5;
                         color: grey;
                         resize: none;
+
+                        &:focus{
+                            outline: none;
+                            border-color: rgba(193, 53, 78, 1);
+                        }
                     }
                 }
 
                 .left {
                     width: 250px;
-                    font-weight: bold;
                     color:#616161;
                 }
 

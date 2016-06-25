@@ -40,12 +40,16 @@ Route::group(['middleware'	=>	'auth'], function(){
 
     // Super group
     Route::group(['middleware'  =>  'su'], function(){
+        Route::get('/dashboard/manage/view/{id}', 'suController@bypassAdmin');
         Route::get('/dashboard/manage/users', 'suController@locationList');
         Route::get('/dashboard/manage/users/exists', 'suController@userExist');
         Route::post('/dashboard/manage/users/create', 'suController@createLocation');
+        Route::post('/dashboard/manage/users/remove', 'suController@removeLocation');
         Route::get('/dashboard/manage/users/edit/{id}', 'suController@editLocation');
         Route::post('/dashboard/manage/users/update', 'suController@updateLocation');
         Route::get('/dashboard/manage/users/{active}', 'suController@createView');
+        
+        
 
     });
 
@@ -55,6 +59,7 @@ Route::group(['middleware'	=>	'auth'], function(){
         Route::get('/dashboard/manage/super-users/exists', 'ssuController@userExist');
         Route::post('/dashboard/manage/super-users/create', 'ssuController@createUser');
         Route::post('/dashboard/manage/super-users/update', 'ssuController@updateUser');
+        Route::post('/dashboard/manage/super-users/remove', 'ssuController@removeUser');
         Route::get('/dashboard/manage/super-users/edit-user/{id}', 'ssuController@editUser');
         Route::get('/dashboard/manage/super-users/{active}', 'ssuController@userView');
     });

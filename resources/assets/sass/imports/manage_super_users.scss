@@ -3,6 +3,7 @@
         margin-left: 20px;
         margin-top: 20px;
         table{
+            margin-bottom : 50px;
             width: 830px;
             background-color:#beb5b5;
 
@@ -34,7 +35,7 @@
                         .user-edit-icon{
                             width : 18px;
                             height: 18px;
-                            margin-left : 40px;
+
                             cursor: pointer;
                         }
 
@@ -50,7 +51,7 @@
 
                         &.edit-column,&.remove-column{
                             width : 100px;
-
+                            text-align:center;
                             a{
                                 color:grey;
                             }
@@ -66,6 +67,7 @@
     .add-user-form,
     .edit-user-form{
         .section{
+            clear : both;
             height : 500px;
             overflow:hidden;
             padding-top: 30px;
@@ -117,6 +119,11 @@
                         &.invalid{
                             border-color : #C1354E;
                         }
+
+                        &:focus{
+                            outline: none;
+                            border-color: rgba(193, 53, 78, 1);
+                        }
                     }
 
                     input[type="submit"]{
@@ -143,7 +150,6 @@
                 }
 
                 .left{
-                    font-weight: bold;
                     color:#616161;
                     width : 250px;
                 }
@@ -163,6 +169,51 @@
                         color : red;
                     }
                 }
+            }
+        }
+    }
+}
+
+.edit-user{
+    .edit-user-form{
+        .messages{
+            clear:both;
+            width : 840px;
+            .message{
+                width : 100%;
+                height : 50px;
+                background : rgba(193, 53, 78, 1);
+                margin-top : 10px;
+                color:white;
+                padding-top: 20px;
+                padding-left : 20px;
+
+                &.hide{
+                    display: none;
+
+                }
+
+
+                .icon,.text{
+                    height : 50px;
+                    display: block;
+                    float:left;
+                }
+
+                .icon{
+                    width : 50px;
+                }
+
+                .text{
+                    padding-top : 5px;
+                    width : 500px;
+                }
+
+                #edit-mode-icon,#disabled-user-message-icon{
+                    width : 30px;
+                    height : 30px;
+                }
+
             }
         }
     }

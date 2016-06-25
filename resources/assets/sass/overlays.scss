@@ -1,0 +1,144 @@
+.overlays{
+    position:absolute;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    margin:auto;
+    height: 100%;
+    width: 100%;
+    background:rgba(0,0,0,0.3);
+    z-index: 100;
+
+    .rm-loc-overlay{
+        position: fixed;
+        height : 420px;
+        width: 700px;
+        background-color:#C1354E;
+        margin : 250px auto auto 300px;
+        border: 5px solid white;
+        -webkit-border-radius:7px;
+        -moz-border-radius:7px;
+        border-radius:7px;
+        color:white;
+
+        .close{
+            position: absolute;
+            right: -30px;
+            top: -30px;
+            padding-top: 5px;
+            padding-left: 8px;
+            height: 27px;
+            width: 27px;
+            font-size: 19px;
+            color: grey;
+            
+            #close-icon{
+                cursor: pointer;
+            }
+        }
+
+        .icon{
+            width : 75px;
+            height : 75px;
+            margin : 40px auto;
+            margin-bottom : 0px;
+        }
+
+        .heading{
+            text-align:center;
+
+            width : 500px;
+            margin : 0px auto;
+
+            .header{
+                margin : 20px;
+                font-size : 30px;
+            }
+
+            .description{
+                font-size : 22px;
+            }
+        }
+
+        .confirm-box{
+            width : 500px;
+            height : 100px;
+            background-color: #EEE0DF;
+            margin : 0px auto;
+            -webkit-border-radius:3px;
+            -moz-border-radius:3px;
+            border-radius:3px;
+            padding-top : 20px;
+
+            .confirm-dialogue{
+                color : #616161;
+                height : 30px;
+                width : 90%;
+                margin : 0px auto;
+                text-align:center;
+                font-weight : bold;
+
+                .confirm-icon, .text{
+                    display: inline-block;
+                    float:left;
+                }
+
+                .confirm-icon{
+                    width : 20px;
+                    margin-right: 5px;
+                    margin-left : 30px;
+
+                    #confirm-checkbox{
+                        g{
+                            path,circle{
+                                fill : #beb5b5;
+                            }
+                        }
+                        &:hover{
+                            cursor: pointer;
+                            g{
+                                path,circle{
+                                    fill : #D2304F;
+                                }
+                            }
+                        }
+                    }
+
+                    &.ticked{
+                        #confirm-checkbox{
+                            g{
+                                path,circle{
+                                    fill : #C1354E;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .delLocBtn{
+                cursor: not-allowed;
+                border : 3px solid rgba(210, 48, 79, 1);
+                border-radius : 4px;
+                -moz-border-radius : 4px;
+                -webkit-border-radius : 4px;
+                width: 150px;
+                height: 35px;
+                font-family: 'Muli', sans-serif;
+                font-size : 16px;
+                background-color:transparent;
+                color:rgba(210, 48, 79, 1);
+                text-align:center;
+                margin : 10px auto;
+                display: block;
+
+                &:hover{
+                    background : rgba(210, 48, 79, 1);
+                    border-color: rgba(210, 48, 79, 1);
+                    color:white;
+                }
+            }
+        }
+    }
+}

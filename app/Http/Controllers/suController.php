@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use App\Models\User;
 use App\Models\UserDetail;
 use Illuminate\Support\Facades\DB;
@@ -154,5 +155,29 @@ class suController extends Controller
             return response()->json(true);
         }
         return response()->json(false);
+    }
+
+    /**
+     * Remove Location
+     * @param Request $request
+     * @return \Illuminate\Http\JsonRespons
+     */
+    public function removeLocation(Request $request){
+        $id = $request->input('id');
+
+        $clients = Client::where('admin_id','=',$id);
+        $user_details = UserDetail::where('user_id','=',$id);
+        $user = User::where('id','=', $id);
+
+        $clients->delete();
+        $user_details->delete();
+        $user->delete();
+        return response()->json(true);
+    }
+
+    public function bypassAdmin($id){
+        session(['temp_admin' => $id]);
+
+        return redirect('/dashboard/user-control');
     }
 }

@@ -122,4 +122,16 @@ class ssuController extends Controller
         }
         return response()->json(false);
     }
+
+    public function removeUser(Request $request){
+        $id = $request->input('id');
+
+        $user = User::where('id','=', $id);
+
+        if($user->delete()){
+            return response()->json(true);
+        }
+
+        return response()->json(false);
+    }
 }

@@ -13,6 +13,7 @@
     @yield('login-form')
     @yield('user-control')
     @yield('dashboard')
+
 </div>
 </body>
 <script type="text/javascript" src="/assets/bower_components/jquery/dist/jquery.min.js"></script>

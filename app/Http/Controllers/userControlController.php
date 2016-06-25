@@ -16,7 +16,10 @@ class userControlController extends Controller
      * @return mixed
      */
     public function userList(){
-        $clients = Client::where('admin_id','=',Auth::user()->id)->get();
+
+        $admin_id = (Auth::user()->role === 'super') ? session('temp_admin') : Auth::user()->id;
+
+        $clients = Client::where('admin_id','=',$admin_id)->get();
         return view('dashboard.user_control')
             ->with('active_tab','user-list')
             ->with('active_sidebar', 'user-control')
@@ -29,10 +32,13 @@ class userControlController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function userListView($active){
+
+        $admin_id = (Auth::user()->role === 'super') ? session('temp_admin') : Auth::user()->id;
+
         if($active === 'user-list' || $active === 'add-user' || $active === 'disabled-users'){
 
             if($active === 'user-list'){
-                $clients = Client::where('admin_id','=',Auth::user()->id)->get();
+                $clients = Client::where('admin_id','=',$admin_id)->get();
                 return view('dashboard.user_control')
                     ->with('active_tab',$active)
                     ->with('active_sidebar', 'user-control')
@@ -40,7 +46,7 @@ class userControlController extends Controller
             }
             
             if($active === 'disabled-users'){
-                $clients = Client::where('admin_id','=',Auth::user()->id)
+                $clients = Client::where('admin_id','=',$admin_id)
                                 ->where('access','=',0)->get();
                 return view('dashboard.user_control')
                     ->with('active_tab',$active)
@@ -63,6 +69,9 @@ class userControlController extends Controller
      * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function createUser(Request $request){
+
+        $admin_id = (Auth::user()->role === 'super') ? session('temp_admin') : Auth::user()->id;
+
         $validator = Validator($request->all(), [
             'name'  =>  'required',
             'company'   =>  'required',
@@ -80,7 +89,7 @@ class userControlController extends Controller
                 'card_tag'  =>  $request->input('card_identifier'),
                 'enote' =>  $request->input('enote'),
                 'access'    =>  $access,
-                'admin_id' =>  Auth::user()->id
+                'admin_id' =>  $admin_id
             ]);
 
             if($client->save()){
@@ -128,6 +137,9 @@ class userControlController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function updateUser(Request $request){
+
+        $admin_id = (Auth::user()->role === 'super') ? session('temp_admin') : Auth::user()->id;
+
         $validator = Validator($request->all(), [
             'name'  =>  'required',
             'company'   =>  'required',
@@ -146,7 +158,7 @@ class userControlController extends Controller
                 'card_tag'  =>  $request->input('card_identifier'),
                 'enote' =>  $request->input('enote'),
                 'access'    =>  $access,
-                'admin_id' =>  Auth::user()->id
+                'admin_id' =>  $admin_id
             ])){
                 return response()->json(true);
             }

@@ -76,7 +76,7 @@
                                     </td>
 
                                     <td class="view">
-                                        <a href="">View</a>
+                                        <a href="/dashboard/manage/view/{{$location->user_id}}" target="_blank">View</a>
                                     </td>
 
                                     <td class="edit">
@@ -84,7 +84,7 @@
                                     </td>
 
                                     <td class="remove">
-                                        <a href="">Remove</a>
+                                        <a href="#" class="remove-location" data-id="{{$location->user_id}}">Remove</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -210,6 +210,19 @@
                     {{--Add Location Form--}}
                     <div class="edit-location-form">
                         <form action="/dashboard/manage/users/update" method="POST">
+
+                            <div class="messages">
+                                <div class="message edit-message">
+                                    <div class="icon">
+                                        @include('svg.dashboard.tabs.edit_mode_icon')
+                                    </div>
+                                    <div class="text">
+                                        You are now in Edit mode
+                                    </div>
+                                </div>
+
+                            </div>
+
                             <div class="section">
                                 <div class="subsection">
                                     <div class="left">

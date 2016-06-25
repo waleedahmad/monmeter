@@ -24,18 +24,18 @@
             <ul class="tabs">
 
                 <a href="/dashboard/manage/super-users/users-list">
-                    <li class="tab-link @if($active_tab === 'users-list') current @endif">Super user</li>
+                    <li class="tab-link @if($active_tab === 'users-list') current @endif">Super Users</li>
                 </a>
 
                 @if($active_tab != 'edit-user')
                 <a href="/dashboard/manage/super-users/add-user">
-                    <li class="tab-link @if($active_tab === 'add-user') current @endif add-user">@include('svg.dashboard.tabs.add_user_tab_icon') Add super user</li>
+                    <li class="tab-link @if($active_tab === 'add-user') current @endif add-user">@include('svg.dashboard.tabs.add_user_tab_icon') Add Super User</li>
                 </a>
                 @endif
 
                 @if($active_tab === 'edit-user')
                     <a href="/dashboard/manage/super-users/edit-user/{{$su_user->id}}">
-                        <li class="tab-link @if($active_tab === 'edit-user') current @endif add-user">@include('svg.dashboard.tabs.add_user_tab_icon') Edit super user</li>
+                        <li class="tab-link @if($active_tab === 'edit-user') current @endif add-user">@include('svg.dashboard.tabs.add_user_tab_icon') Edit Super User</li>
                     </a>
                 @endif
 
@@ -78,7 +78,7 @@
                                 </td>
 
                                 <td class="remove-column">
-                                    <a href="#" data-id="{{$ssu_user->id}}">Remove</a>
+                                    <a href="#" class="remove-suser" data-id="{{$ssu_user->id}}">Remove</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -165,7 +165,20 @@
                     {{--Add Location Form--}}
                     <div class="edit-user-form">
                         <form action="/dashboard/manage/super-users/update" method="POST">
+
+                            <div class="messages">
+                                <div class="message edit-message">
+                                    <div class="icon">
+                                        @include('svg.dashboard.tabs.edit_mode_icon')
+                                    </div>
+                                    <div class="text">
+                                        You are now in Edit mode
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="section">
+
                                 <div class="subsection">
                                     <div class="left">
                                         Email
