@@ -114,7 +114,7 @@
                                         {{$client->company}}
                                     </td>
 
-                                    <td>
+                                    <td class="added-column">
                                         {{$client->added}}
                                     </td>
 

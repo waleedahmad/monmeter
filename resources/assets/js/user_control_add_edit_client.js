@@ -290,7 +290,7 @@ class Client{
 
         this.updateAccessInit();
         this.accessControlInit();
-        $("#uc-date").datepicker({ dateFormat: 'yy-mm-dd' });
+        $("#uc-date").datepicker({ dateFormat: 'dd-mm-yy' });
 
         $(".user-control .add-user-form form").on('submit', {context : this}, this.validateForm);
         $(".user-control .edit-user-form form").on('submit', {context : this}, this.validateEditForm);
