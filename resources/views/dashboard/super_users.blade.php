@@ -249,7 +249,7 @@
                                     </div>
 
                                     <div class="right">
-                                        <input type="text" name="date" id="loc-date" id="loc-date" value="{{$location->added}}" placeholder="Date">
+                                        <input type="text" name="date" id="loc-date" id="loc-date" value="{{date_format(new DateTime($location->added), 'd-m-Y')}}" placeholder="Date">
                                     </div>
                                 </div>
                             </div>
