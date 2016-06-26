@@ -12,29 +12,37 @@ class ssuController extends Controller
 {
     /**
      * SSU Dashboard
+     * @param Request $request
      * @return mixed
      */
-    public function superUsers(){
-        $users = User::where('role','=','super')->get();
+    public function superUsers(Request $request){
+        $order = ($request->input('sort') === 'desc') ? 'DESC' : 'ASC';
+        $users = User::where('role','=','super')->orderBy('email',$order)->get();
         return view('dashboard.manage_super_users')
-            ->with('active_tab','users-list')
-            ->with('active_sidebar', 'super-super-users')
-            ->with('ssu_users', $users);
+                    ->with('active_tab','users-list')
+                    ->with('active_sidebar', 'super-super-users')
+                    ->with('ssu_users', $users)
+                    ->with('request', $request);
     }
 
     /**
      * SSU Dashboard Tabs
      * @param $active
+     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function userView($active){
+    public function userView($active, Request $request){
+
+        $order = ($request->input('sort') === 'desc') ? 'DESC' : 'ASC';
+
         if($active === 'add-user' || $active === 'users-list'){
             if($active === 'users-list'){
-                $users = User::where('role','=','super')->get();
+                $users = User::where('role','=','super')->orderBy('email',$order)->get();
                 return view('dashboard.manage_super_users')
                     ->with('active_tab',$active)
                     ->with('active_sidebar', 'super-super-users')
-                    ->with('ssu_users', $users);
+                    ->with('ssu_users', $users)
+                    ->with('request', $request);
             }
 
             return view('dashboard.manage_super_users')

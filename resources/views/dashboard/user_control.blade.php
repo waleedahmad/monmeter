@@ -54,14 +54,43 @@
                             <tr>
                                 <td>
                                     Name
+                                    @if($request->input('sort') === 'desc' && $request->input('orderBy') === 'name')
+                                        <a href="{{$request->url().'?sort=asc&orderBy=name'}}">
+                                            @include('svg.dashboard.tabs.filter_down')
+                                        </a>
+                                    @else
+                                        <a href="{{$request->url().'?sort=desc&orderBy=name'}}">
+                                            @include('svg.dashboard.tabs.filter_up')
+                                        </a>
+                                    @endif
                                 </td>
 
                                 <td>
                                     Company
+
+                                    @if($request->input('sort') === 'desc' && $request->input('orderBy') === 'company')
+                                        <a href="{{$request->url().'?sort=asc&orderBy=company'}}">
+                                            @include('svg.dashboard.tabs.filter_down')
+                                        </a>
+                                    @else
+                                        <a href="{{$request->url().'?sort=desc&orderBy=company'}}">
+                                            @include('svg.dashboard.tabs.filter_up')
+                                        </a>
+                                    @endif
                                 </td>
 
                                 <td>
                                     Data issued
+
+                                    @if($request->input('sort') === 'desc' && $request->input('orderBy') === 'added')
+                                        <a href="{{$request->url().'?sort=asc&orderBy=added'}}">
+                                            @include('svg.dashboard.tabs.filter_down')
+                                        </a>
+                                    @else
+                                        <a href="{{$request->url().'?sort=desc&orderBy=added'}}">
+                                            @include('svg.dashboard.tabs.filter_up')
+                                        </a>
+                                    @endif
                                 </td>
 
                                 <td>
@@ -214,14 +243,43 @@
                             <tr>
                                 <td>
                                     Name
+                                    @if($request->input('sort') === 'desc' && $request->input('orderBy') === 'name')
+                                        <a href="{{$request->url().'?sort=asc&orderBy=name'}}">
+                                            @include('svg.dashboard.tabs.filter_down')
+                                        </a>
+                                    @else
+                                        <a href="{{$request->url().'?sort=desc&orderBy=name'}}">
+                                            @include('svg.dashboard.tabs.filter_up')
+                                        </a>
+                                    @endif
                                 </td>
 
                                 <td>
                                     Company
+
+                                    @if($request->input('sort') === 'desc' && $request->input('orderBy') === 'company')
+                                        <a href="{{$request->url().'?sort=asc&orderBy=company'}}">
+                                            @include('svg.dashboard.tabs.filter_down')
+                                        </a>
+                                    @else
+                                        <a href="{{$request->url().'?sort=desc&orderBy=company'}}">
+                                            @include('svg.dashboard.tabs.filter_up')
+                                        </a>
+                                    @endif
                                 </td>
 
                                 <td>
                                     Data issued
+
+                                    @if($request->input('sort') === 'desc' && $request->input('orderBy') === 'added')
+                                        <a href="{{$request->url().'?sort=asc&orderBy=added'}}">
+                                            @include('svg.dashboard.tabs.filter_down')
+                                        </a>
+                                    @else
+                                        <a href="{{$request->url().'?sort=desc&orderBy=added'}}">
+                                            @include('svg.dashboard.tabs.filter_up')
+                                        </a>
+                                    @endif
                                 </td>
 
                                 <td>

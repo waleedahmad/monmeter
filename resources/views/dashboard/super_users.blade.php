@@ -51,6 +51,15 @@
                         <tr>
                             <td>
                                 Location
+                                @if($request->input('sort') === 'desc')
+                                    <a href="{{$request->url().'?sort=asc'}}">
+                                        @include('svg.dashboard.tabs.filter_down')
+                                    </a>
+                                @else
+                                    <a href="{{$request->url().'?sort=desc'}}">
+                                        @include('svg.dashboard.tabs.filter_up')
+                                    </a>
+                                @endif
                             </td>
 
                             <td>

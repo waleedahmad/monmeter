@@ -149,7 +149,7 @@
 
                 <div class="export">
                     <button class="exportBtn">
-                        Export data to CSV >
+                        Export data to CSV
                     </button>
                 </div>
 

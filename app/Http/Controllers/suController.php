@@ -15,32 +15,39 @@ class suController extends Controller
 {
     /**
      * Super user clients list
+     * @param Request $request
      * @return mixed
      */
-    public function locationList(){
+    public function locationList(Request $request){
 
+        $order = ($request->input('sort') === 'desc') ? 'DESC' : 'ASC';
         $locations = DB::table('users')
                         ->where('role','=','admin')
+                        ->orderBy('location', $order)
                         ->where('user_details.admin_id', '=', Auth::user()->id)
                         ->join('user_details', 'users.id', '=', 'user_details.user_id')
                         ->get();
         return view('dashboard.super_users')
             ->with('active_tab','location-list')
             ->with('active_sidebar', 'super-users')
-            ->with('locations', $locations);
+            ->with('locations', $locations)
+            ->with('request', $request);
     }
 
     /**
      * Render manage super users view
      * @param $active
+     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function createView($active){
+    public function createView($active, Request $request){
 
+        $order = ($request->input('sort') === 'desc') ? 'DESC' : 'ASC';
         if($active === 'add-location'  || $active === 'location-list'){
             if($active === 'location-list'){
                 $locations = DB::table('users')
                                 ->where('role','=','admin')
+                                ->orderBy('location', $order)
                                 ->where('user_details.admin_id', '=', Auth::user()->id)
                                 ->join('user_details', 'users.id', '=', 'user_details.user_id')
                                 ->get();
@@ -48,7 +55,8 @@ class suController extends Controller
                 return view('dashboard.super_users')
                     ->with('active_tab',$active)
                     ->with('active_sidebar', 'super-users')
-                    ->with('locations', $locations);
+                    ->with('locations', $locations)
+                    ->with('request', $request);
             }
             return view('dashboard.super_users')
                 ->with('active_tab',$active)

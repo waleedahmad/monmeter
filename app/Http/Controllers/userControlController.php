@@ -13,17 +13,22 @@ class userControlController extends Controller
 {
     /**
      * Client list
+     * @param Request $request
      * @return mixed
      */
-    public function userList(){
+    public function userList(Request $request){
+
+        $order = ($request->input('sort') === 'desc') ? 'DESC' : 'ASC';
+        $orderBy = ($request->input('orderBy')) ? $request->input('orderBy') : 'name';
 
         $admin_id = (Auth::user()->role === 'super') ? session('temp_admin') : Auth::user()->id;
 
-        $clients = Client::where('admin_id','=',$admin_id)->get();
+        $clients = Client::where('admin_id','=',$admin_id)->orderBy($orderBy, $order)->get();
         return view('dashboard.user_control')
-            ->with('active_tab','user-list')
-            ->with('active_sidebar', 'user-control')
-            ->with('clients', $clients);
+                    ->with('active_tab','user-list')
+                    ->with('active_sidebar', 'user-control')
+                    ->with('clients', $clients)
+                    ->with('request', $request);
     }
 
     /**
@@ -31,27 +36,31 @@ class userControlController extends Controller
      * @param $active
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function userListView($active){
+    public function userListView($active, Request $request){
 
         $admin_id = (Auth::user()->role === 'super') ? session('temp_admin') : Auth::user()->id;
+        $order = ($request->input('sort') === 'desc') ? 'DESC' : 'ASC';
+        $orderBy = ($request->input('orderBy')) ? $request->input('orderBy') : 'name';
 
         if($active === 'user-list' || $active === 'add-user' || $active === 'disabled-users'){
 
             if($active === 'user-list'){
-                $clients = Client::where('admin_id','=',$admin_id)->get();
+                $clients = Client::where('admin_id','=',$admin_id)->orderBy($orderBy, $order)->get();
                 return view('dashboard.user_control')
                     ->with('active_tab',$active)
                     ->with('active_sidebar', 'user-control')
-                    ->with('clients', $clients);
+                    ->with('clients', $clients)
+                    ->with('request', $request);
             }
             
             if($active === 'disabled-users'){
                 $clients = Client::where('admin_id','=',$admin_id)
-                                ->where('access','=',0)->get();
+                                ->where('access','=',0)->orderBy($orderBy, $order)->get();
                 return view('dashboard.user_control')
                     ->with('active_tab',$active)
                     ->with('active_sidebar', 'user-control')
-                    ->with('clients', $clients);
+                    ->with('clients', $clients)
+                    ->with('request', $request);
             }
             return view('dashboard.user_control')
                 ->with('active_tab',$active)
