@@ -110,6 +110,8 @@
                         background-color:transparent;
                         border : 2px solid  #beb5b5;
                         color:grey;
+                        font-size : 14px;
+                        color:black;
 
                         &.invalid{
                             border-color : #C1354E;
@@ -148,6 +150,7 @@
                 .left{
                     color:#616161;
                     width : 250px;
+                    padding-top : 8px;
                 }
 
                 .right{

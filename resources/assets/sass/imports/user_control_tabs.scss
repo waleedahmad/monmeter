@@ -154,6 +154,8 @@
                         height: 25px;
                         background-color: transparent;
                         border: 2px solid #beb5b5;
+                        font-size : 14px;
+                        color:black;
 
                         &.invalid{
                             border-color : #C1354E;
@@ -171,8 +173,9 @@
                         height: 180px;
                         background-color: transparent;
                         border: 2px solid #beb5b5;
-                        color: grey;
+                        color:black;
                         resize: none;
+                        font-size : 14px;
 
                         &:focus{
                             outline: none;
@@ -182,6 +185,7 @@
                 }
 
                 .left {
+                    padding-top : 8px;
                     width: 250px;
                     color:#616161;
                 }
