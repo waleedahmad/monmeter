@@ -35,21 +35,27 @@
         .raw-data{
             width:40%;
             .get-data{
+                float:right;
+                margin-top: 25px;
+                margin-right: 50px;
+                float:right;
+                font-size:  16px;
+                width : 200px;
+                height : 45px;
+                font-family: 'Muli', sans-serif;
+                background : rgba(238, 224, 223, 1);
+                border: 1px solid rgba(193, 53, 78, 1);;
                 border-radius : 3px;
                 -moz-border-radius : 3px;
                 -webkit-border-radius : 3px;
-                width: 138px;
-                height : 34px;
-                background : rgba(238, 224, 223, 1);
-                border-style : Solid;
-                border-color : #C1354E;
-                border-color : rgba(193, 53, 78, 1);
-                border-width : 1px;
-                float:right;
-                margin: 20px;
+                padding : 13px;
+                color: rgba(193, 53, 78, 1);;
+                font-weight :bold;
                 cursor: pointer;
-                color:rgba(193, 53, 78, 1);
-                font-size: 16px;
+                &:hover{
+                    background : rgba(193, 53, 78, 1);
+                    color:white;
+                }
             }
         }
     }
@@ -86,7 +92,9 @@
         float:right;
         margin-top: 25px;
         margin-right: 50px;
+
         .exportBtn{
+            font-size:  16px;
             width : 200px;
             height : 45px;
             font-family: 'Muli', sans-serif;
