@@ -41,6 +41,7 @@ class suController extends Controller
             if($active === 'location-list'){
                 $locations = DB::table('users')
                                 ->where('role','=','admin')
+                                ->where('user_details.admin_id', '=', Auth::user()->id)
                                 ->join('user_details', 'users.id', '=', 'user_details.user_id')
                                 ->get();
 
