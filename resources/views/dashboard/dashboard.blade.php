@@ -79,8 +79,6 @@
                 {{--Chart--}}
                 <div class="chart">
                     <div id="chart_div" style="width: 900px; height: 300px;"> </div>
-                    <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['corechart']}]}"></script>
-                    <script src="/assets/charts/chart.js"></script>
                 </div>
             </div>
             @endif
@@ -131,8 +129,6 @@
                 {{--Chart--}}
                 <div class="chart">
                     <div id="chart_div" style="width: 900px; height: 300px;"> </div>
-                    <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['corechart']}]}"></script>
-                    <script src="/assets/charts/chart.js"></script>
                 </div>
             </div>
             @endif
