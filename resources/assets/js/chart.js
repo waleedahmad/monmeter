@@ -1,9 +1,16 @@
-google.setOnLoadCallback(drawChart);
-
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Year', 'Sales'],
+        ['2013',  100],
+        ['2014',  150],
+        ['2015',  20],
+        ['2016',  50]
+
+    ]);
 
     var options = {
-        //vAxis: {minValue: 0, ticks: [0, 1, 2, 3, 4]}
         hAxis: {
             titleTextStyle: {color: '#ffffff'},
             gridlines: {color: 'transparent', count: 10},
@@ -37,24 +44,6 @@ function drawChart() {
         areaOpacity : 0.8
     };
 
-    var data = new google.visualization.DataTable();
-    data.addColumn('datetime', 'Time');
-    data.addColumn('number', 'Temp');
-
-    data.addRows([
-        [new Date('2015-02-06 05:15:03'),20],
-        [new Date('2015-02-06 07:30:03'),  50],
-        [new Date('2015-02-06 12:00:03'), 75],
-        [new Date('2015-02-06 15:15:59'),  60],
-        [new Date('2015-02-06 16:30:03'), 50],
-        [new Date('2015-02-06 18:45:59'),  32],
-        [new Date('2015-02-06 20:00:04'),  25],
-        [new Date('2015-02-06 20:15:05'),  80],
-        [new Date('2015-02-06 20:30:59'), 90],
-
-    ]);
-
     var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-
     chart.draw(data, options);
 }
