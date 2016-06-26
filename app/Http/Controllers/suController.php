@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use App\Models\User;
 use App\Models\UserDetail;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Validator;
 use Illuminate\Http\Request;
@@ -20,6 +21,7 @@ class suController extends Controller
 
         $locations = DB::table('users')
                         ->where('role','=','admin')
+                        ->where('user_details.admin_id', '=', Auth::user()->id)
                         ->join('user_details', 'users.id', '=', 'user_details.user_id')
                         ->get();
         return view('dashboard.super_users')
@@ -126,6 +128,7 @@ class suController extends Controller
             if($user->save()){
                 $details = new UserDetail([
                     'user_id' =>  $user->id,
+                    'admin_id' =>  Auth::user()->id,
                     'location' =>  $request->input('loc_name'),
                     'added' =>  $request->input('date'),
                     'name' => $request->input('name'),

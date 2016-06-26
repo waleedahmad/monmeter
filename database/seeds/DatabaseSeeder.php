@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     {
          //$this->call(superUserSeeder::class);
         User::create([
-            'email'     =>  'hassaan105@gmail.com',
+            'email'     =>  'ssu@gmail.com',
             'password'  =>  bcrypt('binarystar'),
             'role'      =>  'super_super'
         ]);

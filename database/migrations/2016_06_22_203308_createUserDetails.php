@@ -15,6 +15,7 @@ class CreateUserDetails extends Migration
         Schema::create('user_details', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
+            $table->integer('admin_id')->unsigned();
             $table->string('location');
             $table->date('added');
             $table->string('name');
@@ -24,6 +25,7 @@ class CreateUserDetails extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('admin_id')->references('id')->on('users');
         });
     }
 
