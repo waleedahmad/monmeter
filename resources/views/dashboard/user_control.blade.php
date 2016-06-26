@@ -115,7 +115,7 @@
                                     </td>
 
                                     <td class="added-column">
-                                        {{$client->added}}
+                                        {{date_format(new DateTime($client->added), 'd-m-Y')}}
                                     </td>
 
                                     <td class="edit-column">
@@ -402,7 +402,7 @@
                                     </div>
 
                                     <div class="right">
-                                        <input type="text" name="date" id="uc-date" placeholder="Date"  value="{{$client->added}}">
+                                        <input type="text" name="date" id="uc-date" placeholder="Date"  value="{{date_format(new DateTime($client->added), 'd-m-Y')}}">
                                     </div>
                                 </div>
 
