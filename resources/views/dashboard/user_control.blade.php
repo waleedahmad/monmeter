@@ -303,8 +303,8 @@
                                         {{$client->company}}
                                     </td>
 
-                                    <td>
-                                        {{$client->added}}
+                                    <td class="added-column">
+                                        {{date_format(new DateTime($client->added), 'd-m-Y')}}
                                     </td>
 
                                     <td class="edit-column">

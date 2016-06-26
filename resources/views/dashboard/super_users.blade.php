@@ -161,7 +161,7 @@
                                 </div>
 
                                 <div class="right">
-                                    <input type="email" name="email" id="email" placeholder="email">
+                                    <input type="email" name="email" id="email" placeholder="Email">
                                 </div>
                             </div>
 
@@ -171,7 +171,7 @@
                                 </div>
 
                                 <div class="right">
-                                    <input type="password" name="password" id="password" placeholder="password">
+                                    <input type="password" name="password" id="password" placeholder="Password">
                                 </div>
                             </div>
                         </div>
@@ -183,7 +183,7 @@
                                 </div>
 
                                 <div class="right">
-                                    <input type="text" name="static_ip" id="static-ip" placeholder="static ip">
+                                    <input type="text" name="static_ip" id="static-ip" placeholder="Static ip">
                                 </div>
                             </div>
 
