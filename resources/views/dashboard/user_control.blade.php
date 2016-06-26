@@ -80,7 +80,7 @@
                                 </td>
 
                                 <td>
-                                    Data issued
+                                    Date issued
 
                                     @if($request->input('sort') === 'desc' && $request->input('orderBy') === 'added')
                                         <a href="{{$request->url().'?sort=asc&orderBy=added'}}">
@@ -269,7 +269,7 @@
                                 </td>
 
                                 <td>
-                                    Data issued
+                                    Date issued
 
                                     @if($request->input('sort') === 'desc' && $request->input('orderBy') === 'added')
                                         <a href="{{$request->url().'?sort=asc&orderBy=added'}}">
