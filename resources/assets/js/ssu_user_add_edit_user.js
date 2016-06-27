@@ -90,7 +90,7 @@ class ssuUser{
                                     </div>
                 
                                     <div class="text">
-                                        I have read and understand the above information
+                                        I have read and understood the statement
                                     </div>
                                 </div>
                 

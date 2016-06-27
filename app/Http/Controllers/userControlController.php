@@ -94,7 +94,7 @@ class userControlController extends Controller
             $client = new Client([
                 'name'  =>  $request->input('name'),
                 'company'   =>  $request->input('company'),
-                'added'  =>  $request->input('date'),
+                'added'  =>  date_format(new \DateTime($request->input('date')), 'Y-m-d'),
                 'card_tag'  =>  $request->input('card_identifier'),
                 'enote' =>  $request->input('enote'),
                 'access'    =>  $access,
@@ -163,7 +163,7 @@ class userControlController extends Controller
             if($client->update([
                 'name'  =>  $request->input('name'),
                 'company'   =>  $request->input('company'),
-                'added'  =>  $request->input('date'),
+                'added'  =>  date_format(new \DateTime($request->input('date')), 'Y-m-d'),
                 'card_tag'  =>  $request->input('card_identifier'),
                 'enote' =>  $request->input('enote'),
                 'access'    =>  $access,

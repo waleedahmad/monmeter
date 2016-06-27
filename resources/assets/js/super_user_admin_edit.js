@@ -12,7 +12,7 @@ class Admin{
         this.mac_address = $("#mac");
         this.user_id = $("#user-id");
 
-        $( "#loc-date" ).datepicker({ dateFormat: 'yy-mm-dd' });
+        $( "#loc-date" ).datepicker({ dateFormat: 'dd-mm-yy' });
         $(".location-form form").on('submit', {context : this}, this.validateForm);
         $(".edit-location-form form").on('submit', {context : this}, this.validateEditForm);
         $("#loc-name, #loc-date, #name," +
@@ -99,7 +99,7 @@ class Admin{
                                     </div>
                 
                                     <div class="text">
-                                        I have read and understand the above information
+                                        I have read and understood the statement
                                     </div>
                                 </div>
                 

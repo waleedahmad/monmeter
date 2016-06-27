@@ -7,7 +7,7 @@
 
         table{
             margin-bottom : 50px;
-            width: 830px;
+            width: 845px;
             background-color:#beb5b5;
 
             thead{
@@ -27,20 +27,22 @@
 
             tbody{
                 tr{
-                    height: 20px;
+
                     td{
                         background : #EEE0DF;
                         height : 10px;
                         padding: 5px;
                         color : #616161;
-                        font-family : Proxima Nova;
                         font-size : 16px;
 
+                        .user-edit-icon{
+                            cursor: pointer;
+                        }
                         .user-edit-icon,.disable-user-icon{
                             width : 18px;
                             height: 18px;
+                            margin-top: 5px;
                             margin-left : 40px;
-                            cursor: pointer;
                         }
 
                         .user-edit-icon{
@@ -56,6 +58,11 @@
                         &.edit-column,&.status-column{
                             width : 100px;
                         }
+
+                        &.added-column{
+                            text-align: center;
+                            width : 120px;
+                        }
                     }
                 }
             }
@@ -69,6 +76,8 @@
     .add-user-form,
     .edit-user-form{
 
+        margin-left: 20px;
+        width : 850px;
         .messages{
             clear:both;
             width : 860px;
@@ -175,7 +184,7 @@
 
                     textarea {
                         padding: 5px;
-                        width: 620px;
+                        width: 585px;
                         height: 180px;
                         background-color: transparent;
                         border: 2px solid #beb5b5;

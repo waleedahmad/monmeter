@@ -80,7 +80,7 @@
                                 </td>
 
                                 <td>
-                                    Data issued
+                                    Date issued
 
                                     @if($request->input('sort') === 'desc' && $request->input('orderBy') === 'added')
                                         <a href="{{$request->url().'?sort=asc&orderBy=added'}}">
@@ -114,8 +114,8 @@
                                         {{$client->company}}
                                     </td>
 
-                                    <td>
-                                        {{$client->added}}
+                                    <td class="added-column">
+                                        {{date_format(new DateTime($client->added), 'd-m-Y')}}
                                     </td>
 
                                     <td class="edit-column">
@@ -269,7 +269,7 @@
                                 </td>
 
                                 <td>
-                                    Data issued
+                                    Date issued
 
                                     @if($request->input('sort') === 'desc' && $request->input('orderBy') === 'added')
                                         <a href="{{$request->url().'?sort=asc&orderBy=added'}}">
@@ -303,8 +303,8 @@
                                         {{$client->company}}
                                     </td>
 
-                                    <td>
-                                        {{$client->added}}
+                                    <td class="added-column">
+                                        {{date_format(new DateTime($client->added), 'd-m-Y')}}
                                     </td>
 
                                     <td class="edit-column">
@@ -402,7 +402,7 @@
                                     </div>
 
                                     <div class="right">
-                                        <input type="text" name="date" id="uc-date" placeholder="Date"  value="{{$client->added}}">
+                                        <input type="text" name="date" id="uc-date" placeholder="Date"  value="{{date_format(new DateTime($client->added), 'd-m-Y')}}">
                                     </div>
                                 </div>
 
