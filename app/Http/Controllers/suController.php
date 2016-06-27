@@ -190,6 +190,6 @@ class suController extends Controller
     public function bypassAdmin($id){
         session(['temp_admin' => $id]);
 
-        return redirect('/dashboard/user-control');
+        return redirect('/dashboard/main');
     }
 }
