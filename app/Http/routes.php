@@ -4,7 +4,6 @@
  * Authentication Routes
  */
 
-
 Route::group(['middleware'	=>	'guest'], function(){
     Route::get('/login', 'AuthController@login');
     Route::post('/login', 'AuthController@login');
@@ -65,5 +64,7 @@ Route::group(['middleware'	=>	'auth'], function(){
     });
 });
 
+
+Route::get('/api', 'FuelLogController@logger');
 
 

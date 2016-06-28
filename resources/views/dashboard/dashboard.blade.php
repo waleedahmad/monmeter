@@ -53,10 +53,10 @@
 
                         <div class="right">
                             <p>
-                                Mr Nick Chan
+                                {{$admin->name}}
                             </p>
                             <p>
-                                21 June 2016 | 10:21:34
+                                {{$admin->added}} | {{date_format(new \DateTime($admin->created_at), 'H:i:s')}}
                             </p>
                         </div>
                     </div>
@@ -103,10 +103,10 @@
 
                         <div class="right">
                             <p>
-                                Mr Nick Chan
+                                {{$admin->name}}
                             </p>
                             <p>
-                                21 June 2016 | 10:21:34
+                                {{$admin->added}} | {{date_format(new \DateTime($admin->created_at), 'H:i:s')}}
                             </p>
                         </div>
                     </div>
@@ -181,94 +181,31 @@
                         </thead>
 
                         <tbody>
+                        @foreach($logs as $log)
                             <tr>
                                 <td>
-                                    Nick Chan
+                                    {{$log->name}}
                                 </td>
 
                                 <td>
-                                    Star Fuels
+                                    {{$log->company}}
                                 </td>
 
                                 <td class="date-time">
-                                    21-Jun-2016 | 10:21:34
+                                    {{$log->added}} | {{date_format(new \DateTime($log->created_at), 'H:i:s')}}
                                 </td>
 
                                 <td class="litres">
-                                    10,784.4
+                                    {{$log->fuel_level}}
                                 </td>
 
                                 <td class="status">
-
+                                    @if(!$log->access)
+                                        @include('svg.dashboard.tabs.log_history_status_hand_icon')
+                                    @endif
                                 </td>
                             </tr>
-
-                            <tr>
-                                <td>
-                                    Nick Chan
-                                </td>
-
-                                <td>
-                                    Star Fuels
-                                </td>
-
-                                <td class="date-time">
-                                    21-Jun-2016 | 10:21:34
-                                </td>
-
-                                <td class="litres">
-                                    10,784.4
-                                </td>
-
-                                <td class="status">
-                                    @include('svg.dashboard.tabs.log_history_status_hand_icon')
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    Nick Chan
-                                </td>
-
-                                <td>
-                                    Star Fuels
-                                </td>
-
-                                <td class="date-time">
-                                    21-Jun-2016 | 10:21:34
-                                </td>
-
-                                <td class="litres">
-                                    10,784.4
-                                </td>
-
-                                <td class="status">
-
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    Nick Chan
-                                </td>
-
-                                <td>
-                                    Star Fuels
-                                </td>
-
-                                <td class="date-time">
-                                    21-Jun-2016 | 10:21:34
-                                </td>
-
-                                <td class="litres">
-                                    10,784.4
-                                </td>
-
-                                <td class="status">
-
-                                </td>
-                            </tr>
-
+                        @endforeach
 
 
                         </tbody>
