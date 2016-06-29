@@ -140,10 +140,28 @@
                 {{--Timeline Button bar--}}
                 <div class="time-line">
                     <ul>
-                        <li>24 H</li>
-                        <li class="active">7 D</li>
-                        <li>30 D</li>
-                        <li>60 D</li>
+                        <li @if($request->input('sort') === '24D') class="active" @endif>
+                            <a href="{{$request->url().'?sort=24D'}}">
+                                24 H
+                            </a>
+                        </li>
+                        <li @if($request->input('sort') === '7D') class="active" @endif>
+                            <a href="{{$request->url().'?sort=7D'}}">
+                                7 D
+                            </a>
+                        </li>
+
+                        <li @if($request->input('sort') === '30D') class="active" @endif>
+                            <a href="{{$request->url().'?sort=30D'}}">
+                                30 D
+                            </a>
+                        </li>
+
+                        <li @if($request->input('sort') === '60D') class="active" @endif>
+                            <a href="{{$request->url().'?sort=60D'}}">
+                                60 D
+                            </a>
+                        </li>
                     </ul>
                 </div>
 
@@ -206,10 +224,13 @@
                                 </td>
                             </tr>
                         @endforeach
-
-
                         </tbody>
                     </table>
+                </div>
+
+
+                <div class="paginator">
+                    {!! $logs->appends($request->except('page'))->links() !!}
                 </div>
             </div>
             @endif

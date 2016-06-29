@@ -94,6 +94,10 @@
                         </tbody>
                     </table>
                 </div>
+
+                <div class="paginator">
+                    {!! $ssu_users->appends($request->except('page'))->links() !!}
+                </div>
             </div>
             @endif
 

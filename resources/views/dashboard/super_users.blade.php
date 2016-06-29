@@ -100,6 +100,10 @@
                         </tbody>
                     </table>
                 </div>
+
+                <div class="paginator">
+                    {!! $locations->appends($request->except('page'))->links() !!}
+                </div>
             </div>
             @endif
 

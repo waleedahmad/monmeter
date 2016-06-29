@@ -136,6 +136,11 @@
                             </tbody>
                         </table>
                     </div>
+
+
+                    <div class="paginator">
+                        {!! $clients->appends($request->except('page'))->links() !!}
+                    </div>
                 </div>
             @endif
 
@@ -322,6 +327,10 @@
                             @endforeach
                             </tbody>
                         </table>
+                    </div>
+
+                    <div class="paginator">
+                        {!! $clients->appends($request->except('page'))->links() !!}
                     </div>
                 </div>
             @endif

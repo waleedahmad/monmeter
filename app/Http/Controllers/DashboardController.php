@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Models\Client;
 use App\Models\FuelLog;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -24,15 +25,19 @@ class DashboardController extends Controller
     /**
      * Dashboard Tabs
      * @param $active
+     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function createView($active){
+    public function createView($active, Request $request){
         if($active === 'real-time' || $active === 'last-reading' || $active === 'log-history'){
 
             $admin_id = (Auth::user()->role === 'super') ? session('temp_admin') : Auth::user()->id;
 
             if($active === 'log-history'){
-                $logs = FuelLog::where('admin_id','=',$admin_id)->get();
+
+
+
+                $logs = FuelLog::where('admin_id','=',$admin_id)->paginate(10);
                 $count = 0;
                 foreach ($logs as $log){
                     $client = $this->getClientDetails($log->client_id);
@@ -48,7 +53,8 @@ class DashboardController extends Controller
                     ->with('active_tab',$active)
                     ->with('active_sidebar', 'main')
                     ->with('admin', $this->getAdminDetails())
-                    ->with('logs', $logs);
+                    ->with('logs', $logs)
+                    ->with('request',$request);
             }
 
             return view('dashboard.dashboard')

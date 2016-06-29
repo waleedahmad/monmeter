@@ -17,7 +17,7 @@ class ssuController extends Controller
      */
     public function superUsers(Request $request){
         $order = ($request->input('sort') === 'desc') ? 'DESC' : 'ASC';
-        $users = User::where('role','=','super')->orderBy('email',$order)->get();
+        $users = User::where('role','=','super')->orderBy('email',$order)->paginate(10);
         return view('dashboard.manage_super_users')
                     ->with('active_tab','users-list')
                     ->with('active_sidebar', 'super-super-users')
@@ -37,7 +37,7 @@ class ssuController extends Controller
 
         if($active === 'add-user' || $active === 'users-list'){
             if($active === 'users-list'){
-                $users = User::where('role','=','super')->orderBy('email',$order)->get();
+                $users = User::where('role','=','super')->orderBy('email',$order)->paginate(10);
                 return view('dashboard.manage_super_users')
                     ->with('active_tab',$active)
                     ->with('active_sidebar', 'super-super-users')

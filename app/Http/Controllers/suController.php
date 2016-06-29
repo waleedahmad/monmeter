@@ -26,7 +26,7 @@ class suController extends Controller
                         ->orderBy('location', $order)
                         ->where('user_details.admin_id', '=', Auth::user()->id)
                         ->join('user_details', 'users.id', '=', 'user_details.user_id')
-                        ->get();
+                        ->paginate(10);
         return view('dashboard.super_users')
             ->with('active_tab','location-list')
             ->with('active_sidebar', 'super-users')
@@ -50,7 +50,7 @@ class suController extends Controller
                                 ->orderBy('location', $order)
                                 ->where('user_details.admin_id', '=', Auth::user()->id)
                                 ->join('user_details', 'users.id', '=', 'user_details.user_id')
-                                ->get();
+                                ->paginate(10);
 
                 return view('dashboard.super_users')
                     ->with('active_tab',$active)

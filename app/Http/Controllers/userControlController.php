@@ -23,7 +23,7 @@ class userControlController extends Controller
 
         $admin_id = (Auth::user()->role === 'super') ? session('temp_admin') : Auth::user()->id;
 
-        $clients = Client::where('admin_id','=',$admin_id)->orderBy($orderBy, $order)->get();
+        $clients = Client::where('admin_id','=',$admin_id)->orderBy($orderBy, $order)->paginate(10);
         return view('dashboard.user_control')
                     ->with('active_tab','user-list')
                     ->with('active_sidebar', 'user-control')
@@ -45,7 +45,7 @@ class userControlController extends Controller
         if($active === 'user-list' || $active === 'add-user' || $active === 'disabled-users'){
 
             if($active === 'user-list'){
-                $clients = Client::where('admin_id','=',$admin_id)->orderBy($orderBy, $order)->get();
+                $clients = Client::where('admin_id','=',$admin_id)->orderBy($orderBy, $order)->paginate(10);
                 return view('dashboard.user_control')
                     ->with('active_tab',$active)
                     ->with('active_sidebar', 'user-control')
@@ -55,7 +55,7 @@ class userControlController extends Controller
             
             if($active === 'disabled-users'){
                 $clients = Client::where('admin_id','=',$admin_id)
-                                ->where('access','=',0)->orderBy($orderBy, $order)->get();
+                                ->where('access','=',0)->orderBy($orderBy, $order)->paginate(1);
                 return view('dashboard.user_control')
                     ->with('active_tab',$active)
                     ->with('active_sidebar', 'user-control')
