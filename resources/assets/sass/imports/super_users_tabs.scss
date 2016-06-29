@@ -62,7 +62,6 @@
     .paginator{
         position : relative;
         bottom : 0px;
-        right : 0px;
         .pagination{
             text-align:right;
             margin-right : 25px;
@@ -71,25 +70,24 @@
                 padding : 10px;
 
                 a{
-                    display: block;
+                    cursor: pointer;
                     color: rgba(193, 53, 78, 1);
                 }
 
                 &:first-child, &:last-child{
+                    padding : 0px;
                     display: inline-block;
                     font-size:  16px;
-                    width : 90px;
+                    width : 120px;
                     font-family: 'Muli', sans-serif;
                     background : rgba(238, 224, 223, 1);
                     border: 1px solid rgba(193, 53, 78, 1);
                     border-radius : 3px;
                     -moz-border-radius : 3px;
                     -webkit-border-radius : 3px;
-                    padding : 13px;
-                    color: rgba(193, 53, 78, 1);;
+                    color: rgba(193, 53, 78, 1);
                     font-weight :bold;
                     text-align:center;
-                    cursor: pointer;
 
                     &:hover{
                         background : rgba(193, 53, 78, 1);
@@ -98,9 +96,16 @@
                         }
                     }
 
-                    a{
+                    span,a{
+                        padding : 10px;
+                        height : 20px;
+                        width: 100px;
                         display: block;
                         text-decoration: none;
+                    }
+
+                    span{
+                        cursor: not-allowed;
                     }
                 }
 
