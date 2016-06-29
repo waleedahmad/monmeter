@@ -16,13 +16,7 @@ class ssuController extends Controller
      * @return mixed
      */
     public function superUsers(Request $request){
-        $order = ($request->input('sort') === 'desc') ? 'DESC' : 'ASC';
-        $users = User::where('role','=','super')->orderBy('email',$order)->paginate(10);
-        return view('dashboard.manage_super_users')
-                    ->with('active_tab','users-list')
-                    ->with('active_sidebar', 'super-super-users')
-                    ->with('ssu_users', $users)
-                    ->with('request', $request);
+        return $this->generateView('users-list', $request);
     }
 
     /**
@@ -33,16 +27,9 @@ class ssuController extends Controller
      */
     public function userView($active, Request $request){
 
-        $order = ($request->input('sort') === 'desc') ? 'DESC' : 'ASC';
-
         if($active === 'add-user' || $active === 'users-list'){
             if($active === 'users-list'){
-                $users = User::where('role','=','super')->orderBy('email',$order)->paginate(10);
-                return view('dashboard.manage_super_users')
-                    ->with('active_tab',$active)
-                    ->with('active_sidebar', 'super-super-users')
-                    ->with('ssu_users', $users)
-                    ->with('request', $request);
+                return $this->generateView($active, $request);
             }
 
             return view('dashboard.manage_super_users')
@@ -52,6 +39,38 @@ class ssuController extends Controller
         }else{
             return redirect('/dashboard/manage/super-users');
         }
+    }
+
+    /**
+     * Generate respective dashboard view
+     * @param $active
+     * @param $request
+     * @return mixed
+     */
+    public function generateView($active, $request){
+        return view('dashboard.manage_super_users')
+                    ->with('active_tab',$active)
+                    ->with('active_sidebar', 'super-super-users')
+                    ->with('ssu_users', $this->getSuperUsers($request))
+                    ->with('request', $request);
+    }
+
+    /**
+     * get Super users
+     * @param $request
+     * @return mixed
+     */
+    protected function getSuperUsers($request){
+        return User::where('role','=','super')->orderBy('email',$this->getSortOrder($request))->paginate(10);
+    }
+
+    /**
+     * get sort filter value
+     * @param $request
+     * @return string
+     */
+    protected function getSortOrder($request){
+        return ($request->input('sort') === 'desc') ? 'DESC' : 'ASC';
     }
 
     /**
@@ -123,19 +142,20 @@ class ssuController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function userExist(Request $request){
-        $email = $request->input('email');
-        $user = User::where('email', '=', $email);
+        $user = User::where('email', '=', $request->input('email'));
         if($user->count()){
             return response()->json(true);
         }
         return response()->json(false);
     }
 
+    /**
+     * Remove Super user
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function removeUser(Request $request){
-        $id = $request->input('id');
-
-        $user = User::where('id','=', $id);
-
+        $user = User::where('id','=', $request->input('id'));
         if($user->delete()){
             return response()->json(true);
         }

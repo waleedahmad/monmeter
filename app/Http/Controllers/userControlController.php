@@ -17,18 +17,7 @@ class userControlController extends Controller
      * @return mixed
      */
     public function userList(Request $request){
-
-        $order = ($request->input('sort') === 'desc') ? 'DESC' : 'ASC';
-        $orderBy = ($request->input('orderBy')) ? $request->input('orderBy') : 'name';
-
-        $admin_id = (Auth::user()->role === 'super') ? session('temp_admin') : Auth::user()->id;
-
-        $clients = Client::where('admin_id','=',$admin_id)->orderBy($orderBy, $order)->paginate(10);
-        return view('dashboard.user_control')
-                    ->with('active_tab','user-list')
-                    ->with('active_sidebar', 'user-control')
-                    ->with('clients', $clients)
-                    ->with('request', $request);
+        return $this->generateView('user-list',$request, 'all');
     }
 
     /**
@@ -38,29 +27,12 @@ class userControlController extends Controller
      */
     public function userListView($active, Request $request){
 
-        $admin_id = (Auth::user()->role === 'super') ? session('temp_admin') : Auth::user()->id;
-        $order = ($request->input('sort') === 'desc') ? 'DESC' : 'ASC';
-        $orderBy = ($request->input('orderBy')) ? $request->input('orderBy') : 'name';
-
         if($active === 'user-list' || $active === 'add-user' || $active === 'disabled-users'){
-
             if($active === 'user-list'){
-                $clients = Client::where('admin_id','=',$admin_id)->orderBy($orderBy, $order)->paginate(10);
-                return view('dashboard.user_control')
-                    ->with('active_tab',$active)
-                    ->with('active_sidebar', 'user-control')
-                    ->with('clients', $clients)
-                    ->with('request', $request);
+                return $this->generateView($active,$request, 'all');
             }
-            
             if($active === 'disabled-users'){
-                $clients = Client::where('admin_id','=',$admin_id)
-                                ->where('access','=',0)->orderBy($orderBy, $order)->paginate(1);
-                return view('dashboard.user_control')
-                    ->with('active_tab',$active)
-                    ->with('active_sidebar', 'user-control')
-                    ->with('clients', $clients)
-                    ->with('request', $request);
+                return $this->generateView($active,$request, 'disabled');
             }
             return view('dashboard.user_control')
                 ->with('active_tab',$active)
@@ -69,7 +41,61 @@ class userControlController extends Controller
         }else{
             return redirect('/dashboard/user-control');
         }
+    }
 
+    /**
+     * Get Clients
+     * @param $request
+     * @param $access
+     * @return mixed
+     */
+    protected function getClients($request, $access){
+        if($access === 'disabled'){
+            return Client::where('admin_id','=',$this->getAdminId())
+                ->where('access','=',0)->orderBy($this->getOrderByVal($request), $this->getSortOrder($request))->paginate(10);
+        }
+        return Client::where('admin_id','=',$this->getAdminId())->orderBy($this->getOrderByVal($request), $this->getSortOrder($request))->paginate(10);
+    }
+
+    /**
+     * get Admin id
+     * @return mixed
+     */
+    protected function getAdminId(){
+        return (Auth::user()->role === 'super') ? session('temp_admin') : Auth::user()->id;;
+    }
+
+    /**
+     * get sort filter value
+     * @param $request
+     * @return string
+     */
+    protected function getOrderByVal($request){
+        return ($request->input('orderBy')) ? $request->input('orderBy') : 'name';
+    }
+
+    /**
+     * get sort filter value
+     * @param $request
+     * @return string
+     */
+    protected function getSortOrder($request){
+        return ($request->input('sort') === 'desc') ? 'DESC' : 'ASC';
+    }
+
+    /**
+     * generate respective view
+     * @param $active
+     * @param $request
+     * @param $access
+     * @return mixed
+     */
+    protected function generateView($active, $request, $access){
+        return view('dashboard.user_control')
+                ->with('active_tab',$active)
+                ->with('active_sidebar', 'user-control')
+                ->with('clients', $this->getClients($request, $access))
+                ->with('request', $request);
     }
 
     /**
@@ -78,8 +104,6 @@ class userControlController extends Controller
      * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function createUser(Request $request){
-
-        $admin_id = (Auth::user()->role === 'super') ? session('temp_admin') : Auth::user()->id;
 
         $validator = Validator($request->all(), [
             'name'  =>  'required',
@@ -98,7 +122,7 @@ class userControlController extends Controller
                 'card_tag'  =>  $request->input('card_identifier'),
                 'enote' =>  $request->input('enote'),
                 'access'    =>  $access,
-                'admin_id' =>  $admin_id
+                'admin_id' =>  $this->getAdminId()
             ]);
 
             if($client->save()){
@@ -117,9 +141,9 @@ class userControlController extends Controller
     public function editUser($id){
         $client = Client::where('id','=',$id)->first();
         return view('dashboard.user_control')
-            ->with('active_tab','edit-user')
-            ->with('active_sidebar', 'user-control')
-            ->with('client', $client);
+                ->with('active_tab','edit-user')
+                ->with('active_sidebar', 'user-control')
+                ->with('client', $client);
     }
 
     /**
@@ -147,8 +171,6 @@ class userControlController extends Controller
      */
     public function updateUser(Request $request){
 
-        $admin_id = (Auth::user()->role === 'super') ? session('temp_admin') : Auth::user()->id;
-
         $validator = Validator($request->all(), [
             'name'  =>  'required',
             'company'   =>  'required',
@@ -167,7 +189,7 @@ class userControlController extends Controller
                 'card_tag'  =>  $request->input('card_identifier'),
                 'enote' =>  $request->input('enote'),
                 'access'    =>  $access,
-                'admin_id' =>  $admin_id
+                'admin_id' =>  $this->getAdminId()
             ])){
                 return response()->json(true);
             }

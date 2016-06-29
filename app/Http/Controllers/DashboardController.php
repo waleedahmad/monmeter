@@ -31,29 +31,12 @@ class DashboardController extends Controller
     public function createView($active, Request $request){
         if($active === 'real-time' || $active === 'last-reading' || $active === 'log-history'){
 
-            $admin_id = (Auth::user()->role === 'super') ? session('temp_admin') : Auth::user()->id;
-
             if($active === 'log-history'){
-
-
-
-                $logs = FuelLog::where('admin_id','=',$admin_id)->paginate(10);
-                $count = 0;
-                foreach ($logs as $log){
-                    $client = $this->getClientDetails($log->client_id);
-                    $logs[$count]->name = $client->name;
-                    $logs[$count]->company = $client->company;
-                    $logs[$count]->added = $client->added;
-                    $logs[$count]->timestamp = $client->created_at;
-                    $logs[$count]->access = $client->access;
-                    $count++;
-                }
-
                 return view('dashboard.dashboard')
                     ->with('active_tab',$active)
                     ->with('active_sidebar', 'main')
                     ->with('admin', $this->getAdminDetails())
-                    ->with('logs', $logs)
+                    ->with('logs', $this->getFuelLogs())
                     ->with('request',$request);
             }
 
@@ -67,20 +50,31 @@ class DashboardController extends Controller
     }
 
     /**
+     * Get Fuel Logs
+     * @return mixed
+     */
+    protected function getFuelLogs(){
+        return FuelLog::with('client')->where('admin_id','=',$this->getAdminId())->paginate(10);
+    }
+
+    /**
      * Returns admin user details
      * @return mixed
      */
-    public function getAdminDetails(){
-        $admin_id = (Auth::user()->role === 'super') ? session('temp_admin') : Auth::user()->id;
+    protected function getAdminDetails(){
         $user = DB::table('users')
-            ->where('role','=','admin')
-            ->where('user_details.user_id', '=', $admin_id)
-            ->join('user_details', 'users.id', '=', 'user_details.user_id')
-            ->first();
+                    ->where('role','=','admin')
+                    ->where('user_details.user_id', '=', $this->getAdminId())
+                    ->join('user_details', 'users.id', '=', 'user_details.user_id')
+                    ->first();
         return $user;
     }
 
-    public function getClientDetails($client_id){
-        return Client::where('id','=',$client_id)->first();
+    /**
+     * get Admin id
+     * @return mixed
+     */
+    protected function getAdminId(){
+        return (Auth::user()->role === 'super') ? session('temp_admin') : Auth::user()->id;
     }
 }

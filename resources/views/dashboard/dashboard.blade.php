@@ -185,7 +185,7 @@
                                 </td>
 
                                 <td>
-                                    Data | time activated
+                                    Date | time activated
                                 </td>
 
                                 <td>
@@ -202,15 +202,15 @@
                         @foreach($logs as $log)
                             <tr>
                                 <td>
-                                    {{$log->name}}
+                                    {{$log->client->name}}
                                 </td>
 
                                 <td>
-                                    {{$log->company}}
+                                    {{$log->client->company}}
                                 </td>
 
                                 <td class="date-time">
-                                    {{$log->added}} | {{date_format(new \DateTime($log->created_at), 'H:i:s')}}
+                                    {{$log->client->added}} | {{date_format(new \DateTime($log->client->created_at), 'H:i:s')}}
                                 </td>
 
                                 <td class="litres">
@@ -218,7 +218,7 @@
                                 </td>
 
                                 <td class="status">
-                                    @if(!$log->access)
+                                    @if(!$log->client->access)
                                         @include('svg.dashboard.tabs.log_history_status_hand_icon')
                                     @endif
                                 </td>

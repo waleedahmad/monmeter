@@ -19,19 +19,7 @@ class suController extends Controller
      * @return mixed
      */
     public function locationList(Request $request){
-
-        $order = ($request->input('sort') === 'desc') ? 'DESC' : 'ASC';
-        $locations = DB::table('users')
-                        ->where('role','=','admin')
-                        ->orderBy('location', $order)
-                        ->where('user_details.admin_id', '=', Auth::user()->id)
-                        ->join('user_details', 'users.id', '=', 'user_details.user_id')
-                        ->paginate(10);
-        return view('dashboard.super_users')
-            ->with('active_tab','location-list')
-            ->with('active_sidebar', 'super-users')
-            ->with('locations', $locations)
-            ->with('request', $request);
+        return $this->generateView('location-list', $request);
     }
 
     /**
@@ -42,21 +30,9 @@ class suController extends Controller
      */
     public function createView($active, Request $request){
 
-        $order = ($request->input('sort') === 'desc') ? 'DESC' : 'ASC';
         if($active === 'add-location'  || $active === 'location-list'){
             if($active === 'location-list'){
-                $locations = DB::table('users')
-                                ->where('role','=','admin')
-                                ->orderBy('location', $order)
-                                ->where('user_details.admin_id', '=', Auth::user()->id)
-                                ->join('user_details', 'users.id', '=', 'user_details.user_id')
-                                ->paginate(10);
-
-                return view('dashboard.super_users')
-                    ->with('active_tab',$active)
-                    ->with('active_sidebar', 'super-users')
-                    ->with('locations', $locations)
-                    ->with('request', $request);
+                return $this->generateView($active, $request);
             }
             return view('dashboard.super_users')
                 ->with('active_tab',$active)
@@ -66,6 +42,34 @@ class suController extends Controller
         }
     }
 
+    /**
+     * Generate super_user view
+     * @param $active
+     * @param $request
+     * @return mixed
+     */
+    protected function generateView($active, $request){
+        return view('dashboard.super_users')
+                    ->with('active_tab',$active)
+                    ->with('active_sidebar', 'super-users')
+                    ->with('locations', $this->getLocations($request))
+                    ->with('request', $request);
+    }
+
+    /**
+     * Get Locations/Admins
+     * @param $request
+     * @return mixed
+     */
+    protected function getLocations($request){
+        return DB::table('users')
+                    ->where('role','=','admin')
+                    ->orderBy('location', $this->getSortOrder($request))
+                    ->where('user_details.admin_id', '=', Auth::user()->id)
+                    ->join('user_details', 'users.id', '=', 'user_details.user_id')
+                    ->paginate(10);
+    }
+    
     /**
      * Edit Location
      * @param $id
@@ -187,9 +191,22 @@ class suController extends Controller
         return response()->json(true);
     }
 
+    /**
+     * SU bypass admin redirect
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function bypassAdmin($id){
         session(['temp_admin' => $id]);
-
         return redirect('/dashboard/main');
+    }
+
+    /**
+     * Get sort filter value
+     * @param $request
+     * @return string
+     */
+    protected function getSortOrder($request){
+        return ($request->input('sort') === 'desc') ? 'DESC' : 'ASC';
     }
 }
