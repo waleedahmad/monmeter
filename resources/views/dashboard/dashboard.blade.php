@@ -166,9 +166,12 @@
                 </div>
 
                 <div class="export">
-                    <button class="exportBtn">
-                        Export data to CSV
-                    </button>
+                    <a href="/dashboard/download/logs">
+                        <button class="exportBtn">
+                            Export data to CSV
+                        </button>
+                    </a>
+
                 </div>
 
                 {{--Log Historu Table Data--}}

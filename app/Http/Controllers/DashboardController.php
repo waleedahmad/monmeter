@@ -63,6 +63,45 @@ class DashboardController extends Controller
                     ->paginate(10);
     }
 
+    /**
+     * Download Fuel logs
+     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     */
+    public function downloadLogs(){
+        $headers = [
+            'Cache-Control'       => 'must-revalidate, post-check=0, pre-check=0'
+            ,   'Content-type'        => 'text/csv'
+            ,   'Content-Disposition' => 'attachment; filename=logs.csv'
+            ,   'Expires'             => '0'
+            ,   'Pragma'              => 'public'
+        ];
+
+        $list = FuelLog::where('fuel_logs.admin_id','=',$this->getAdminId())
+                        ->join('clients', 'fuel_logs.client_id', '=', 'clients.id')
+                        ->select('clients.name', 'clients.company', 'clients.added', 'fuel_logs.fuel_level as fuel_level', 'fuel_logs.created_at as logged_at')
+                        ->orderBy('fuel_logs.created_at', 'DESC')
+                        ->get()->toArray();
+
+        # add headers for each column in the CSV download
+        array_unshift($list, array_keys($list[0]));
+
+        $callback = function() use ($list)
+        {
+            $FH = fopen('php://output', 'w');
+            foreach ($list as $row) {
+                fputcsv($FH, $row);
+            }
+            fclose($FH);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+    /**
+     * current time after applying filter
+     * @param $request
+     * @return static
+     */
     protected function getTime($request){
         if($request->input('time')){
             $time = $request->input('time');

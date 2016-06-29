@@ -26,6 +26,7 @@ Route::group(['middleware'	=>	'auth'], function(){
         // Main
         Route::get('/dashboard/main', 'DashboardController@realTime');
         Route::get('/dashboard/main/{active}', 'DashboardController@createView');
+        Route::get('/dashboard/download/logs', 'DashboardController@downloadLogs');
 
         // User Control
         Route::get('/dashboard/user-control', 'userControlController@userList');
@@ -47,9 +48,6 @@ Route::group(['middleware'	=>	'auth'], function(){
         Route::get('/dashboard/manage/users/edit/{id}', 'suController@editLocation');
         Route::post('/dashboard/manage/users/update', 'suController@updateLocation');
         Route::get('/dashboard/manage/users/{active}', 'suController@createView');
-        
-        
-
     });
 
     // Super super group
@@ -64,7 +62,5 @@ Route::group(['middleware'	=>	'auth'], function(){
     });
 });
 
-
-Route::get('/api', 'FuelLogController@logger');
 
 
