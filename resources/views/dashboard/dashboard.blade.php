@@ -140,25 +140,25 @@
                 {{--Timeline Button bar--}}
                 <div class="time-line">
                     <ul>
-                        <li @if($request->input('sort') === '24D') class="active" @endif>
-                            <a href="{{$request->url().'?sort=24D'}}">
+                        <li @if($request->input('time') === '24H') class="active" @endif>
+                            <a href="{{$request->url().'?time=24H'}}">
                                 24 H
                             </a>
                         </li>
-                        <li @if($request->input('sort') === '7D') class="active" @endif>
-                            <a href="{{$request->url().'?sort=7D'}}">
+                        <li @if($request->input('time') === '7D') class="active" @endif>
+                            <a href="{{$request->url().'?time=7D'}}">
                                 7 D
                             </a>
                         </li>
 
-                        <li @if($request->input('sort') === '30D') class="active" @endif>
-                            <a href="{{$request->url().'?sort=30D'}}">
+                        <li @if($request->input('time') === '30D') class="active" @endif>
+                            <a href="{{$request->url().'?time=30D'}}">
                                 30 D
                             </a>
                         </li>
 
-                        <li @if($request->input('sort') === '60D') class="active" @endif>
-                            <a href="{{$request->url().'?sort=60D'}}">
+                        <li @if($request->input('time') === '60D') class="active" @endif>
+                            <a href="{{$request->url().'?time=60D'}}">
                                 60 D
                             </a>
                         </li>
@@ -178,18 +178,58 @@
                             <tr>
                                 <td>
                                     Name
+
+                                    @if($request->input('sort') === 'desc' && $request->input('orderBy') === 'name')
+                                        <a href="{{$request->url().'?sort=asc&orderBy=name'}}@if($request->input('time'))&time={{$request->input('time')}} @endif">
+                                            @include('svg.dashboard.tabs.filter_down')
+                                        </a>
+                                    @else
+                                        <a href="{{$request->url().'?sort=desc&orderBy=name'}}@if($request->input('time'))&time={{$request->input('time')}} @endif">
+                                            @include('svg.dashboard.tabs.filter_up')
+                                        </a>
+                                    @endif
                                 </td>
 
                                 <td>
                                     Company
+
+                                    @if($request->input('sort') === 'desc' && $request->input('orderBy') === 'company')
+                                        <a href="{{$request->url().'?sort=asc&orderBy=company'}}@if($request->input('time'))&time={{$request->input('time')}} @endif">
+                                            @include('svg.dashboard.tabs.filter_down')
+                                        </a>
+                                    @else
+                                        <a href="{{$request->url().'?sort=desc&orderBy=company'}}@if($request->input('time'))&time={{$request->input('time')}} @endif">
+                                            @include('svg.dashboard.tabs.filter_up')
+                                        </a>
+                                    @endif
                                 </td>
 
                                 <td>
                                     Date | time activated
+
+                                    @if($request->input('sort') === 'desc' && $request->input('orderBy') === 'clients.created_at')
+                                        <a href="{{$request->url().'?sort=asc&orderBy=clients.created_at'}}@if($request->input('time'))&time={{$request->input('time')}} @endif">
+                                            @include('svg.dashboard.tabs.filter_down')
+                                        </a>
+                                    @else
+                                        <a href="{{$request->url().'?sort=desc&orderBy=clients.created_at'}}@if($request->input('time'))&time={{$request->input('time')}} @endif">
+                                            @include('svg.dashboard.tabs.filter_up')
+                                        </a>
+                                    @endif
                                 </td>
 
                                 <td>
                                     Record (L)
+
+                                    @if($request->input('sort') === 'desc' && $request->input('orderBy') === 'fuel_level')
+                                        <a href="{{$request->url().'?sort=asc&orderBy=fuel_level'}}@if($request->input('time'))&time={{$request->input('time')}} @endif">
+                                            @include('svg.dashboard.tabs.filter_down')
+                                        </a>
+                                    @else
+                                        <a href="{{$request->url().'?sort=desc&orderBy=fuel_level'}}@if($request->input('time'))&time={{$request->input('time')}} @endif">
+                                            @include('svg.dashboard.tabs.filter_up')
+                                        </a>
+                                    @endif
                                 </td>
 
                                 <td>
@@ -202,15 +242,15 @@
                         @foreach($logs as $log)
                             <tr>
                                 <td>
-                                    {{$log->client->name}}
+                                    {{$log->name}}
                                 </td>
 
                                 <td>
-                                    {{$log->client->company}}
+                                    {{$log->company}}
                                 </td>
 
                                 <td class="date-time">
-                                    {{$log->client->added}} | {{date_format(new \DateTime($log->client->created_at), 'H:i:s')}}
+                                    {{$log->added}} | {{date_format(new \DateTime($log->created_at), 'H:i:s')}}
                                 </td>
 
                                 <td class="litres">
@@ -218,7 +258,7 @@
                                 </td>
 
                                 <td class="status">
-                                    @if(!$log->client->access)
+                                    @if(!$log->access)
                                         @include('svg.dashboard.tabs.log_history_status_hand_icon')
                                     @endif
                                 </td>

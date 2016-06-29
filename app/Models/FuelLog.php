@@ -12,9 +12,4 @@ class FuelLog extends Model
     protected $fillable = [
         'id', 'client_id', 'fuel_level', 'admin_id'
     ];
-
-    public function client()
-    {
-        return $this->belongsTo('App\Models\Client', 'client_id', 'id');
-    }
 }

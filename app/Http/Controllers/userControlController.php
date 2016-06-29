@@ -52,7 +52,11 @@ class userControlController extends Controller
     protected function getClients($request, $access){
         if($access === 'disabled'){
             return Client::where('admin_id','=',$this->getAdminId())
-                ->where('access','=',0)->orderBy($this->getOrderByVal($request), $this->getSortOrder($request))->paginate(10);
+                            ->where('access','=',0)
+                            ->orderBy(
+                                $this->getOrderByVal($request),
+                                $this->getSortOrder($request)
+                            )->paginate(10);
         }
         return Client::where('admin_id','=',$this->getAdminId())->orderBy($this->getOrderByVal($request), $this->getSortOrder($request))->paginate(10);
     }
