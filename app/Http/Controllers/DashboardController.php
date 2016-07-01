@@ -147,7 +147,7 @@ class DashboardController extends Controller
      * @return string
      */
     protected function getOrderByVal($request){
-        return ($request->input('orderBy')) ? $request->input('orderBy') : 'name';
+        return ($request->input('orderBy')) ? $request->input('orderBy') : 'fuel_logs.created_at';
     }
 
     /**
