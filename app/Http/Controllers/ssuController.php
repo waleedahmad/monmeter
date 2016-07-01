@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
+use App\Models\FuelLog;
+use App\Models\TankLog;
 use App\Models\User;
+use App\Models\UserDetail;
 use Validator;
 use Illuminate\Http\Request;
 
@@ -155,7 +159,21 @@ class ssuController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function removeUser(Request $request){
-        $user = User::where('id','=', $request->input('id'));
+
+        $user = User::where('id','=', $request->input('id'))->first();
+
+        $admins = User::where('user_details.admin_id', '=', $user->id)
+                        ->join('user_details', 'user_details.user_id', '=', 'users.id');
+
+        $client_ids = $admins->lists('user_details.user_id');
+
+        FuelLog::whereIn('admin_id', $client_ids)->delete();
+        TankLog::whereIn('admin_id', $client_ids)->delete();
+        Client::whereIn('admin_id',$client_ids)->delete();
+        UserDetail::where('admin_id', '=', $user->id)->delete();
+        User::whereIn('id', $client_ids)->Delete();
+        $admins->delete();
+
         if($user->delete()){
             return response()->json(true);
         }
