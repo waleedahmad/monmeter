@@ -23,11 +23,11 @@ class Client{
      * Update user access
      */
     updateAccessInit(){
+        var _this = this;
         $(".accessUpdateBtn").on('click', function(){
             var client_id = $("#client-id").val(),
                 access = $("#user-access").val(),
                 token = $("meta[name=_token]").attr('content');
-            console.log(token);
 
             $.ajax({
                 url : '/dashboard/user-control/update/access',
@@ -40,7 +40,8 @@ class Client{
                 },
                 success : function(res){
                     if(res.updated){
-                        window.location = '/dashboard/user-control/user-list';
+                        console.log(res);
+                        _this.requestClientAPI(res.details, res.ip,'updateuser', '/dashboard/user-control/user-list');
                     }
                 }
             });
@@ -144,10 +145,31 @@ class Client{
                 _token : $("meta[name=_token]").attr('content')
             },
             success : function(res){
-                if(res){
-                    window.location = '/dashboard/user-control/user-list';
+                if(res.status){
+                    console.log(res);
+                    _this.requestClientAPI(res.details, res.ip,'adduser', '/dashboard/user-control/user-list');
                 }
             }
+        });
+    }
+
+    /**
+     * Make arduino api call to add/update user
+     * @param user
+     * @param ip
+     * @param action
+     */
+    requestClientAPI(user, ip, action, reload){
+        var status = (user.access) ? 1 : 0;
+        var seekLoc = user.id - 1;
+        $.ajax({
+            type : 'POST',
+            url : 'http://'+ip+'/'+action+'/?card_tag='+user.card_tag+'&status='+status+'&seekLoc='+seekLoc+'!',
+            success : function(res){
+                console.log(res);
+                window.location = reload;
+            }
+
         });
     }
 

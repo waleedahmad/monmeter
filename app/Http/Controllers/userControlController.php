@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\UserDetail;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use Illuminate\Http\Request;
@@ -130,11 +131,24 @@ class userControlController extends Controller
             ]);
 
             if($client->save()){
-                return response()->json(true);
+                return response()->json([
+                    'status'    =>  true,
+                    'details'   =>  $client->toArray(),
+                    'ip'        =>  $this->getAdminIP($client->admin_id)
+                ]);
             }
         }else{
             return response()->json(false);
         }
+    }
+
+    /**
+     * Get admin ip address assigned by super user
+     * @param $id
+     * @return mixed
+     */
+    public function getAdminIP($id){
+        return UserDetail::where('user_id','=',$id)->first()->static_ip;
     }
 
     /**
@@ -162,9 +176,13 @@ class userControlController extends Controller
 
         $client = Client::where('id','=',$client_id);
         if($client->update([
-            'access'    => $access
+            'access'    => $access,
         ])){
-            return response()->json(['updated'  =>   true]);
+            return response()->json([
+                'updated'  =>   true,
+                'details'   =>  $client->first()->toArray(),
+                'ip'        =>  $this->getAdminIP($client->first()->admin_id)
+            ]);
         }
     }
 
